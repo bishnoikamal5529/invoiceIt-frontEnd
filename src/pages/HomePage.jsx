@@ -1,10 +1,13 @@
-import { Container, Row, Col, Button, Card, Carousel } from 'react-bootstrap';
+import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 
 const HomePage = () => (
     <Container className="mt-5 text-center">
         <Row className="mb-4">
             <Col>
-                <h1 className="display-4">InvoiceIt</h1>
+                <h1 className="display-4">
+                    <span className='text-primary-emphasis'>Invoice</span>
+                    <span className='text-danger'>It</span>
+                </h1>
                 <p className="lead">
                     Track products, suppliers, and invoices effortlessly. Generate invoices in seconds. Completely free!
                 </p>
@@ -35,83 +38,12 @@ const HomePage = () => (
             </Col>
         </Row>
         <Row className="mb-4">
-            <Col md={4}>
-                <Card className="shadow-sm">
-                    <Card.Body>
-                        <Card.Title>Track Products</Card.Title>
-                        <Card.Text>
-                            Keep an organized list of all your products with detailed information.
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
-            </Col>
-            <Col md={4}>
-                <Card className="shadow-sm">
-                    <Card.Body>
-                        <Card.Title>Manage Suppliers</Card.Title>
-                        <Card.Text>
-                            Easily manage supplier details and stay connected with them.
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
-            </Col>
-            <Col md={4}>
-                <Card className="shadow-sm">
-                    <Card.Body>
-                        <Card.Title>Generate Invoices</Card.Title>
-                        <Card.Text>
-                            Create professional invoices quickly and share them with your clients.
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
-            </Col>
-        </Row>
-        <Row className="mb-4">
-            <Col>
-                <Carousel>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://via.placeholder.com/800x400"
-                            alt="First slide"
-                        />
-                        <Carousel.Caption>
-                            <h3>Effortless Tracking</h3>
-                            <p>Track your products and suppliers with ease.</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://via.placeholder.com/800x400"
-                            alt="Second slide"
-                        />
-                        <Carousel.Caption>
-                            <h3>Professional Invoices</h3>
-                            <p>Create and share invoices in seconds.</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://via.placeholder.com/800x400"
-                            alt="Third slide"
-                        />
-                        <Carousel.Caption>
-                            <h3>Stay Organized</h3>
-                            <p>Keep everything in one place and stay productive.</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                </Carousel>
-            </Col>
-        </Row>
-        <Row className="mb-4">
             <Col md={6}>
                 <Card className="shadow-sm">
                     <Card.Body>
-                        <Card.Title>Advanced Analytics</Card.Title>
+                        <Card.Title>Products</Card.Title>
                         <Card.Text>
-                            Gain insights into your business with detailed analytics.
+                            Perform CRUD operations on products. Add, update, delete, and view product details effortlessly.
                         </Card.Text>
                     </Card.Body>
                 </Card>
@@ -119,13 +51,82 @@ const HomePage = () => (
             <Col md={6}>
                 <Card className="shadow-sm">
                     <Card.Body>
-                        <Card.Title>Customizable Templates</Card.Title>
+                        <Card.Title>Invoices</Card.Title>
                         <Card.Text>
-                            Use customizable invoice templates to match your brand.
+                            Manage invoices efficiently. Create, update, delete, and view invoices with ease.
                         </Card.Text>
                     </Card.Body>
                 </Card>
             </Col>
+        </Row>
+        <Row className="mb-4">
+            <Col md={6}>
+                <Card className="shadow-sm">
+                    <Card.Body>
+                        <Card.Title>Suppliers</Card.Title>
+                        <Card.Text>
+                            Keep track of supplier details. Add, update, delete, and view supplier information.
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            </Col>
+            <Col md={6}>
+                <Card className="shadow-sm">
+                    <Card.Body>
+                        <Card.Title>Customers</Card.Title>
+                        <Card.Text>
+                            Manage customer details effectively. Perform CRUD operations on customer data.
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            </Col>
+        </Row>
+        <Row className="mb-4">
+            <Col md={6}>
+                <Card className="shadow-sm">
+                    <Card.Body>
+                        <Card.Title>Users</Card.Title>
+                        <Card.Text>
+                            Admin and managers can manage user accounts. Add, update, delete, and view user details.
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            </Col>
+        </Row>
+        <Row className="mt-5">
+                <h2 className="text-primary">Role-Based Access Control</h2>
+                <p className="lead">
+                    Authorities are maintained based on roles:
+                </p>
+                <Row>
+                <Card className="shadow-sm">
+                    <Card.Body>
+                        <Card.Title>Staff</Card.Title>
+                        <Card.Text>
+                        Can perform CRUD operations on products and invoices.                        
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+                </Row>
+                <Row>
+                <Card className="shadow-sm">
+                        <Card.Body>
+                            <Card.Title>Manager</Card.Title>
+                            <Card.Text>
+                            Can perform CRUD operations on users, customers, and suppliers.                             
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Row>
+                <Row>
+                <Card className="shadow-sm">
+                        <Card.Body>
+                            <Card.Title>Admin</Card.Title>
+                            <Card.Text>
+                            Has full access to all functionalities.                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Row>
         </Row>
         <Row>
             <Col>
