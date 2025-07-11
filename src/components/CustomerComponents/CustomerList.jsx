@@ -71,7 +71,7 @@ const CustomerList = ({customers, handleUpdate, handleDelete, setErrorMsg, handl
                 <td>{customer.phone}</td>
                 <td>{customer.address}</td>
                 <td>{new Date(customer.createdAt).toLocaleDateString()}</td>
-                <td className='d-flex flex-column gap-1 w-100'>
+                <td className='d-flex flex-column gap-1'>
                     <Button 
                         variant="warning" 
                         className="me-2" 
