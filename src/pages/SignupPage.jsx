@@ -45,9 +45,10 @@ const SignupPage = () => {
             <Row className="justify-content-md-center">
                 <Col md={6}>
                     <h2 className="text-center">Sign Up</h2>
-                    {error === "Sign Up Successfull." ?
+                    {error ? error === "Sign Up Successfull." ?
                          <Alert variant="danger" className='text-center text-capitalize'>{error}</Alert>:
-                         <Alert variant="success" className='text-center text-capitalize'>{error}</Alert>
+                         <Alert variant="success" className='text-center text-capitalize'>{error}</Alert>:
+                         ""
                         }                                           
                     <Form onSubmit={handleSubmit}>
                         <Form.Group controlId="formName" className="mb-3">

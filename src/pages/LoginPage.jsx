@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 import guestLogin from '../utils/GuestLogin';
 import LoginUtil from '../utils/LoginUtil';
@@ -10,6 +11,8 @@ const LoginPage = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,6 +27,12 @@ const LoginPage = () => {
             const response = await LoginUtil(userData);
             setError(response);
             setLoading(false);
+
+            if(response == 'login successful.'){
+                setTimeout(() => {
+                    navigate('/', { replace: true } );
+                }, 500);                
+            }
         }
     };
 
@@ -32,9 +41,10 @@ const LoginPage = () => {
             <Row className="justify-content-md-center">
                 <Col md={6}>
                     <h2 className="text-center">Login</h2>
-                    {error === "login failed." ?
+                    {error ? error === "login failed." ?
                          <Alert variant="danger" className='text-center text-capitalize'>{error}</Alert>:
-                         <Alert variant="success" className='text-center text-capitalize'>{error}</Alert>
+                         <Alert variant="success" className='text-center text-capitalize'>{error}</Alert>:
+                         ""
                         }
                     <Form onSubmit={handleSubmit}>
                         <Form.Group controlId="formEmail" className="mb-3">

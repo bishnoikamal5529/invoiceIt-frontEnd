@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, Button, Container, Spinner, Badge } from 'react-bootstrap';
+import { Form, Button, Container, ListGroup } from 'react-bootstrap';
 
 const SearchSupplier = ({ supplierList }) => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -51,20 +51,39 @@ const SearchSupplier = ({ supplierList }) => {
                     Search
                 </Button>
             </Form>
-            <div>
+            <div className='my-4'>
                 <h5>Filtered Suppliers:</h5>
-                <ul>
-                    {filteredSuppliers ? filteredSuppliers.map((supplier, index) => (
-                        <li key={index}>
-                            {supplier.name} - {supplier.contactPerson} - {supplier.phone} - {supplier.email} - {supplier.address} - {supplier.notes}
-                        </li>
-                    )) : (
-                        <div className='d-flex justify-content-start align-items-center gap-3'>
-                            <Spinner animation="grow" variant="dark" />
-                            <Badge bg="dark" style={{ fontSize: "16px" }}>No Supplier Found..</Badge>
-                        </div>
-                    )}
-                </ul>
+                <ListGroup>
+                    <ListGroup.Item
+                        variant='danger'
+                        className='w-100 d-flex justify-content-between'
+                    >
+                        <strong>Name</strong>|
+                        <strong>Contact Person</strong>|
+                        <strong>Phone</strong>|
+                        <strong>Email</strong>|
+                        <strong>Address</strong>|
+                        <strong>Notes</strong>
+
+                    </ListGroup.Item>
+                    {filteredSuppliers && filteredSuppliers.map((supplier, index) => (
+                            <ListGroup.Item 
+                                className='w-100 d-flex justify-content-between'
+                                variant='success' 
+                                key={index}>
+
+                                <p>{supplier.name}</p>|
+                                <p>{supplier.contactPerson}</p>|
+                                <p>{supplier.phone}</p>|
+                                <p>{supplier.email}</p>|
+                                <p>{supplier.address}</p>|
+                                <p>{supplier.notes}</p>
+                        
+                            </ListGroup.Item>
+                        ))
+
+                    }
+                </ListGroup>
             </div>
         </Container>
     );

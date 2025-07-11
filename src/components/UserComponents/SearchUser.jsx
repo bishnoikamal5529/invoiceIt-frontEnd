@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, Button, Container, Spinner, Stack, Badge } from 'react-bootstrap';
+import { Form, Button, Container, ListGroup } from 'react-bootstrap';
 
 const SearchUser = ({ userList }) => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -49,20 +49,34 @@ const SearchUser = ({ userList }) => {
                     Search
                 </Button>
             </Form>
-            <div>
+            <div className='my-4'>
                 <h5>Filtered Users:</h5>
-                <ul>
-                    {filteredUsers ? filteredUsers.map((user, index) => (
-                        <li key={index}>
-                            {user.name} - {user.email} - {user.role} - {user.phone}
-                        </li>
-                    )) : (
-                        <div className='d-flex justify-content-start align-items-center gap-3'>
-                            <Spinner animation="grow" variant="dark" />
-                            <Badge bg="dark" style={{ fontSize: "16px" }}>No User Found..</Badge>
-                        </div>
-                    )}
-                </ul>
+                <ListGroup>
+                    <ListGroup.Item
+                        variant='danger'
+                        className='w-100 d-flex justify-content-between'
+                    >
+                        <strong>Name</strong>|
+                        <strong>Email</strong>|
+                        <strong>Role</strong>|
+                        <strong>Phone</strong>
+                    </ListGroup.Item>
+                    {filteredUsers && filteredUsers.map((user, index) => (
+                            <ListGroup.Item 
+                                className='w-100 d-flex justify-content-between'
+                                variant='success' 
+                                key={index}>
+
+                                <p>{user.name}</p>|
+                                <p>{user.email}</p>|
+                                <p>{user.role}</p>|
+                                <p>{user.phone}</p>
+                
+                            </ListGroup.Item>
+                        ))
+
+                    }
+                </ListGroup>
             </div>
         </Container>
     );

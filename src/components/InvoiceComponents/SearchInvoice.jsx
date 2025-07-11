@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Form, Button, Container, Spinner, Stack, Badge } from 'react-bootstrap';
+import { Form, Button, Container, ListGroup } from 'react-bootstrap';
 
-const SearchProduct = ({ productList }) => {
+const SearchInvoice = ({ invoiceList }) => {
     const [searchTerm, setSearchTerm] = useState('');
-    const [searchParameter, setSearchParameter] = useState('name');
-    const [filteredProducts, setFilteredProducts] = useState(null);
+    const [searchParameter, setSearchParameter] = useState('invoiceNumber');
+    const [filteredInvoices, setFilteredInvoices] = useState(null);
 
     const handleInputChange = (e) => {
         setSearchTerm(e.target.value);
@@ -15,29 +15,28 @@ const SearchProduct = ({ productList }) => {
     };
 
     const handleSearch = () => {
-        const filtered = productList.filter((product) =>
-            product[searchParameter]
+        const filtered = invoiceList.filter((invoice) =>
+            invoice[searchParameter]
                 .toString()
                 .toLowerCase()
                 .includes(searchTerm.toLowerCase())
         );
-        setFilteredProducts(filtered);
+        setFilteredInvoices(filtered);
     };
 
     return (
         <Container>
-            <h4 className="text-center my-4">Search Product</h4>
+            <h4 className="text-center my-4">Search Invoice</h4>
             <Form className="search-product d-flex mb-4">
                 <Form.Select
                     value={searchParameter}
                     onChange={handleParameterChange}
                     className="me-2"
                 >
-                    <option value="name">Name</option>
-                    <option value="sku">SKU</option>
-                    <option value="price">Price</option>
-                    <option value="quantityInStock">Quantity In Stock</option>
-                    <option value="category">Category</option>
+                    <option value="invoiceNumber">Invoice No.</option>
+                    <option value="customerEmail">Customer Email</option>
+                    <option value="customerName">Customer Name</option>
+                    <option value="issueDate">Date</option>
                 </Form.Select>
                 <Form.Control
                     type="text"
@@ -50,24 +49,37 @@ const SearchProduct = ({ productList }) => {
                     Search
                 </Button>
             </Form>
-            <div>
-                <h5>Filtered Products:</h5>
-                <ul>
+            <div className='my-5'>
+                <h5>Filtered Invoices:</h5>
+                <ListGroup>
+                    <ListGroup.Item
+                        variant='danger'
+                        className='w-100 d-flex justify-content-between'
+                    >
+                        <strong>Invoice No.</strong>|
+                        <strong>Customer Email</strong>|
+                        <strong>Customer Name</strong>|
+                        <strong>Date</strong>|
+                    </ListGroup.Item>
+                    {filteredInvoices && filteredInvoices.map((invoice, index) => (
+                            <ListGroup.Item 
+                                className='w-100 d-flex justify-content-between'
+                                variant='success' 
+                                key={index}>
 
-                    {filteredProducts ? filteredProducts.map((product, index) => (
-                            <li key={index}>
-                                {product.name} - {product.sku} - ${product.price} - {product.quantityInStock} - {product.category}
-                            </li>
-                        )) : <div className='d-flex justify-content-start align-items-center gap-3'>
-                                <Spinner animation="grow" variant="dark" />
-                                <Badge bg="dark" style={{fontSize : "16px"}}>No Product Found..</Badge>
-                            </div>
+                                <p>{invoice.invoiceNumber}</p>|
+                                <p>{invoice.customerEmail}</p>|
+                                <p>{invoice.customerName}</p>|
+                                <p>{invoice.issueDate.slice(0,10)}</p>
+
+                            </ListGroup.Item>
+                        ))
 
                     }
-                </ul>
+                </ListGroup>
             </div>
         </Container>
     );
 };
 
-export default SearchProduct;
+export default SearchInvoice;

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, Button, Container, Spinner, Badge } from 'react-bootstrap';
+import { Form, Button, Container,ListGroup } from 'react-bootstrap';
 
 const SearchCustomer = ({ customerList }) => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -49,20 +49,34 @@ const SearchCustomer = ({ customerList }) => {
                     Search
                 </Button>
             </Form>
-            <div>
+            <div className='my-5'>
                 <h5>Filtered Customers:</h5>
-                <ul>
-                    {filteredCustomers ? filteredCustomers.map((customer, index) => (
-                        <li key={index}>
-                            {customer.name} - {customer.email} - {customer.phone} - {customer.address}
-                        </li>
-                    )) : (
-                        <div className='d-flex justify-content-start align-items-center gap-3'>
-                            <Spinner animation="grow" variant="dark" />
-                            <Badge bg="dark" style={{ fontSize: "16px" }}>No Customer Found..</Badge>
-                        </div>
-                    )}
-                </ul>
+                <ListGroup>
+                    <ListGroup.Item
+                        variant='danger'
+                        className='w-100 d-flex justify-content-between'
+                    >
+                        <strong>Name</strong>|
+                        <strong>Email</strong>|
+                        <strong>Phone</strong>|
+                        <strong>Address</strong>
+                    </ListGroup.Item>
+                    {filteredCustomers && filteredCustomers.map((customer, index) => (
+                            <ListGroup.Item 
+                                className='w-100 d-flex justify-content-between'
+                                variant='success' 
+                                key={index}>
+
+                                <p>{customer.name}</p>|
+                                <p>{customer.email}</p>|
+                                <p>{customer.phone}</p>|
+                                <p>{customer.address}</p>
+                
+                            </ListGroup.Item>
+                        ))
+
+                    }
+                </ListGroup>
             </div>
         </Container>
     );

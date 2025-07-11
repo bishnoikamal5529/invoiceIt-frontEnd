@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, Button, Container, Spinner, Stack, Badge } from 'react-bootstrap';
+import { Form, Button, Container, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 const SearchProduct = ({ productList }) => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -50,21 +50,36 @@ const SearchProduct = ({ productList }) => {
                     Search
                 </Button>
             </Form>
-            <div>
+            <div className='my-5'>
                 <h5>Filtered Products:</h5>
-                <ul>
+                <ListGroup>
+                    <ListGroup.Item
+                        variant='danger'
+                        className='w-100 d-flex justify-content-between'
+                    >
+                        <strong>Name</strong>|
+                        <strong>SKU</strong>|
+                        <strong>Price</strong>|
+                        <strong>Quantity</strong>|
+                        <strong>Category</strong>
+                    </ListGroup.Item>
+                    {filteredProducts && filteredProducts.map((product, index) => (
+                            <ListGroup.Item 
+                                className='w-100 d-flex justify-content-between'
+                                variant='success' 
+                                key={index}>
 
-                    {filteredProducts ? filteredProducts.map((product, index) => (
-                            <li key={index}>
-                                {product.name} - {product.sku} - ${product.price} - {product.quantityInStock} - {product.category}
-                            </li>
-                        )) : <div className='d-flex justify-content-start align-items-center gap-3'>
-                                <Spinner animation="grow" variant="dark" />
-                                <Badge bg="dark" style={{fontSize : "16px"}}>No Product Found..</Badge>
-                            </div>
+                                <p>{product.name}</p>|
+                                <p>{product.sku}</p>|
+                                <p>${product.price}</p>|
+                                <p>{product.quantityInStock}</p>|
+                                <p>{product.category}</p>
+
+                            </ListGroup.Item>
+                        ))
 
                     }
-                </ul>
+                </ListGroup>
             </div>
         </Container>
     );

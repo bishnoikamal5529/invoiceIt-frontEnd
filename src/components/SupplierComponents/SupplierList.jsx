@@ -1,13 +1,16 @@
-import {useState} from 'react';
+import { useState, useRef } from 'react';
 import {Accordion, Container, Row, Col, Table, Button } from 'react-bootstrap';
 import SupplierInput from './SupplierInput';
 import SearchSupplier from './SearchSupplier';
+import ConfirmDelete from '../GlobalComponents/ConfirmDelete';
 
 const SupplierList = ({suppliers, handleUpdate, handleDelete, setErrorMsg, handleRefresh}) => {
 
     const [showCreate ,setShowCreate] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
-
+    const [showDelete, setShowDelete] = useState(false);
+    
+    const currentID = useRef(null);
 
     return (
         <Container className="mt-4">
@@ -37,6 +40,12 @@ const SupplierList = ({suppliers, handleUpdate, handleDelete, setErrorMsg, handl
                 {showCreate && <SupplierInput setErrorMsg={setErrorMsg} setShowCreate={setShowCreate} handleRefresh={handleRefresh} />}
 
                 {showSearch && <SearchSupplier supplierList={suppliers} />}
+
+                {showDelete && <ConfirmDelete 
+                                currentID={currentID.current} 
+                                onDelete={handleDelete} 
+                                handleRefresh={handleRefresh} 
+                                setShowDelete={setShowDelete} />}
 
                 </Col>
             </Row>
@@ -71,8 +80,12 @@ const SupplierList = ({suppliers, handleUpdate, handleDelete, setErrorMsg, handl
                                         </Button>
                                         <Button 
                                             variant="danger" 
-                                            onClick={() => handleDelete(supplier._id)}
-                                        >
+                                            onClick={() => 
+                                                {
+                                                    currentID.current = supplier._id
+                                                    setShowDelete(true)
+                                                }
+                                            }                                        >
                                             Delete
                                         </Button>
                                     </p>
