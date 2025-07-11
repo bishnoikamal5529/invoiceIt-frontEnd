@@ -10,6 +10,8 @@ function NavbarComponent() {
     let ignore = true;
     let errorString = "";
 
+      console.log("running navbar effect");
+      
         if (!localStorage.authToken) {
             ignore = false;
         }else{
