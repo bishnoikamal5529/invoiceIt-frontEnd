@@ -57,6 +57,13 @@ const InvoicePage = () => {
                 if (ignore && entity.success) {
                     for (let i = 0; i < entity.data.length; i++) {
                         newList[i] = entity.data[i];
+                        if(!entity.data[i].customerEmail){
+                            newList[i].customerEmail = "";
+                        }
+                        if(!entity.data[i].customerName){
+                            newList[i].customerName = "";
+                        }
+                        
                         newList[i].id = i + 1;
                     }
                     
@@ -95,6 +102,13 @@ const InvoicePage = () => {
                 for (let i = 0; i < entity.data.length; i++) {
                     newList[i] = entity.data[i];
                     newList[i].id = i + 1;
+
+                    if(!entity.data[i].customerEmail){
+                        newList[i].customerEmail = "";
+                    }
+                    if(!entity.data[i].customerName){
+                        newList[i].customerName = "";
+                    }
                 }
 
                 setInvoices(newList);
