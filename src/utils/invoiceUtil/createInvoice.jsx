@@ -21,15 +21,18 @@ export const createInvoice = async (data) => {
             body: JSON.stringify(invoiceData),
         });
 
-        let invoice = await response.json();
-        if (invoice) {
-            console.log(invoice);
-            return 'Invoice Successfully Created.';
-        } else {
-            return 'Error Creating an Invoice';
+        if (!response.ok) {
+            return "Error";
         }
+
+        const data = await response.json();
+
+        if (!data) {
+            return "Error";
+        }        
+        return data;
     } catch (error) {
         console.error('Error creating invoice:', error);
-        return 'There is some error. Please try again.';
+        return "Error";
     }
 };

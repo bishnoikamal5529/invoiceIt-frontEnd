@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import updateCustomer from '../../utils/CustomerUtil/updateCustomer';
 
-const UpdateCustomerForm = ({ defaultValues, onCancel }) => {
+const UpdateCustomerForm = ({ defaultValues, onCancel,updateErrorMsg }) => {
     const [formData, setFormData] = useState({
         name: defaultValues.name || '',
         email: defaultValues.email || '',
@@ -15,12 +15,14 @@ const UpdateCustomerForm = ({ defaultValues, onCancel }) => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        let data = updateCustomer(defaultValues._id, formData);
-        if (data) {
-            onCancel();
+        let data = await updateCustomer(defaultValues._id, formData);
+        if(data == "Error"){
+            updateErrorMsg("Something went wrong while updating the Invoice. Please try again later.");
         }
+        onCancel();
+        
     };
 
     return (

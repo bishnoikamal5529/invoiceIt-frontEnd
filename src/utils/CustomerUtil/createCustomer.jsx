@@ -8,8 +8,6 @@ const createCustomer = async (data) => {
     };
 
     try {
-        console.log(JSON.stringify(customerData));
-
         const response = await fetch('https://invoice-backend-s4y6.onrender.com/api/v1/customer', {
             method: 'POST',
             headers: {
@@ -18,17 +16,15 @@ const createCustomer = async (data) => {
             },
             body: JSON.stringify(customerData),
         });
-
-        let customer = await response.json();        
-        if (customer) {
-            console.log(customer.data);
+             
+        if (response.status == 201) {
             return 'Customer Successfully Created.';
         } else {
-            return 'Error Creating a Customer';
+            return 'Error';
         }
     } catch (error) {
         console.error('Error creating customer:', error);
-        return 'There is some error. Please try again.';
+        return 'Error';
     }
 };
 

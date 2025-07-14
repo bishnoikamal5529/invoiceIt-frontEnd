@@ -6,7 +6,7 @@ import CustomerInput from './CustomerInput';
 import SearchCustomer from './SearchCustomer';
 import ConfirmDelete from '../GlobalComponents/ConfirmDelete';
 
-const CustomerList = ({customers, handleUpdate, handleDelete, setErrorMsg, handleRefresh}) => {
+const CustomerList = ({customers, handleUpdate, handleDelete, updateErrorMsg, handleRefresh}) => {
 
     const [showCreate ,setShowCreate] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
@@ -38,7 +38,7 @@ const CustomerList = ({customers, handleUpdate, handleDelete, setErrorMsg, handl
 
     {showCreate && <CustomerInput 
                     setShowCreate={setShowCreate} 
-                    setErrorMsg={setErrorMsg} 
+                    updateErrorMsg={updateErrorMsg} 
                     handleRefresh={handleRefresh} />}
 
     {showSearch && <SearchCustomer 

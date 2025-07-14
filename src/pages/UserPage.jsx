@@ -46,7 +46,12 @@ const UserPage = () => {
                 }
             };
 
-            setErrorMsg("Updating Users....");
+            if(errorMsg){
+                updateErrorMsg(errorMsg + " Updating Users...");
+            }
+            else{
+                updateErrorMsg("Updating Users...");
+            }
             setTimeout(() => {
                 fetchUsers().then(entity => {
                     console.log(entity);
@@ -58,7 +63,6 @@ const UserPage = () => {
                         }
 
                         setUsers(newList);
-                        setErrorMsg(false);
                     }
                 });
             }, 1000);
@@ -68,6 +72,13 @@ const UserPage = () => {
             };
         }
     }, [activeUpdate]);
+
+    const updateErrorMsg = (msg) => {
+        setErrorMsg(msg);
+        setTimeout(() => {
+            setErrorMsg(false);
+        },5000)
+    }
 
     const handleUpdate = (user) => {
         console.log(user);
@@ -87,7 +98,7 @@ const UserPage = () => {
         }
     };
 
-    const handleRefresh = () => {
+    const handleRefresh = () => {        
         getAllUser().then(entity => {
             console.log(entity);
             let newList = [];
@@ -103,12 +114,12 @@ const UserPage = () => {
     };
 
     const handleDelete = async (id) => {
-        console.log(`Deleting user with ID: ${id}`);
         const res = await deleteUser(id);
-        if (res) {
+        if(res == 'Success'){
             setTimeout(handleRefresh, 1000);
-        } else {
-            setErrorMsg("Error Deleting User");
+        }
+        else{                        
+            updateErrorMsg("Something went wrong while deleting the User. Please referesh the page, login again or try again later.");
         }
     };
 
@@ -120,11 +131,14 @@ const UserPage = () => {
                 </Alert>
             }
             {
-                activeUpdate ? <UpdateUserForm defaultValues={activeUpdate} onCancel={() => setActiveUpdate(!activeUpdate)} setErrorMsg={setErrorMsg} />
+                activeUpdate ? <UpdateUserForm 
+                                    defaultValues={activeUpdate} 
+                                    onCancel={() => setActiveUpdate(!activeUpdate)} 
+                                    updateErrorMsg={updateErrorMsg} />
                 : <div className='w-100 d-flex justify-content-center flex-column'>
                     {
                         users ?
-                            <UserList users={users} handleUpdate={handleUpdate} handleDelete={handleDelete} setErrorMsg={setErrorMsg} handleRefresh={handleRefresh} /> :
+                            <UserList users={users} handleUpdate={handleUpdate} handleDelete={handleDelete} updateErrorMsg={updateErrorMsg} handleRefresh={handleRefresh} /> :
                             <Spinner className='my-5 mx-auto' animation="border" variant="dark" />
                     }
                     <Button variant="dark" className='w-25 m-auto' onClick={handleRefresh}>

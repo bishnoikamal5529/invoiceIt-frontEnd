@@ -4,7 +4,7 @@ import SupplierInput from './SupplierInput';
 import SearchSupplier from './SearchSupplier';
 import ConfirmDelete from '../GlobalComponents/ConfirmDelete';
 
-const SupplierList = ({suppliers, handleUpdate, handleDelete, setErrorMsg, handleRefresh}) => {
+const SupplierList = ({suppliers, handleUpdate, handleDelete, updateErrorMsg, handleRefresh}) => {
 
     const [showCreate ,setShowCreate] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
@@ -37,7 +37,7 @@ const SupplierList = ({suppliers, handleUpdate, handleDelete, setErrorMsg, handl
                 </section>
 
                             
-                {showCreate && <SupplierInput setErrorMsg={setErrorMsg} setShowCreate={setShowCreate} handleRefresh={handleRefresh} />}
+                {showCreate && <SupplierInput updateErrorMsg={updateErrorMsg} setShowCreate={setShowCreate} handleRefresh={handleRefresh} />}
 
                 {showSearch && <SearchSupplier supplierList={suppliers} />}
 

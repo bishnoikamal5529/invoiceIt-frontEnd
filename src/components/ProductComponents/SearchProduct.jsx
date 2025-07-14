@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, Button, Container, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Form, Button, Container, ListGroup } from 'react-bootstrap';
 
 const SearchProduct = ({ productList }) => {
     const [searchTerm, setSearchTerm] = useState('');

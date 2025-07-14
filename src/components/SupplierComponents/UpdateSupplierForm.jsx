@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import updateSupplier from '../../utils/supplierUtil/updateSupplier';
 
-const UpdateSupplierForm = ({ defaultValues, onCancel }) => {
+const UpdateSupplierForm = ({ defaultValues, onCancel, updateErrorMsg }) => {
     const [formData, setFormData] = useState({
         name: defaultValues.name || '',
         contactPerson: defaultValues.contactPerson || '',
@@ -12,19 +12,19 @@ const UpdateSupplierForm = ({ defaultValues, onCancel }) => {
         notes: defaultValues.notes || '',
     });
 
-    const [errors, setErrors] = useState({});
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const data = updateSupplier(defaultValues._id, formData);
-        if (data) {
-            onCancel();
+        const data = await updateSupplier(defaultValues._id, formData);
+        
+        if(data == "Error"){
+            updateErrorMsg("Something went wrong while updating the Supplier. Please try again later.");
         }
+        onCancel();
     };
 
     return (

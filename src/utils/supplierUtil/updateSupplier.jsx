@@ -8,20 +8,22 @@ const updateSupplier = async (id, updatedSupplierData) => {
             },
             body: JSON.stringify(updatedSupplierData),
         });
-
+        
+        console.log(response);
+        
         if (!response.ok) {
-            return "There is some error while updating the Supplier.";
+            return "Error";
         }
 
         const data = await response.json();
 
         if (!data) {
-            return "Bad Auth";
-        }
+            return "Error";
+        }        
         return data;
     } catch (error) {
         console.error('Error updating supplier:', error);
-        return "Error updating supplier";
+        return "Error";
     }
 };
 

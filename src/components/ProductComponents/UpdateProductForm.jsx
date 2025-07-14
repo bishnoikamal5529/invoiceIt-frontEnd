@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import updateProduct from '../../utils/productsUtil/updateProduct';
 
-const UpdateProductForm = ({ defaultValues, onCancel }) => {
+const UpdateProductForm = ({ defaultValues, onCancel, updateErrorMsg }) => {
     const [formData, setFormData] = useState({
         name: defaultValues.name || '',
         sku: defaultValues.sku || '',
@@ -16,12 +16,14 @@ const UpdateProductForm = ({ defaultValues, onCancel }) => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        let data = updateProduct(defaultValues._id,formData);
-        if(data){
-            onCancel();
+        let data = await updateProduct(defaultValues._id,formData);
+        
+        if(data == "Error"){
+            updateErrorMsg("Something went wrong while updating the Invoice. Please try again later.");
         }
+        onCancel();
         
     };
 

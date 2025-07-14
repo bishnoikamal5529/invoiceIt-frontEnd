@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import createUser from '../../utils/UserUtil/createUser';
 
-const UserInput = ({ setErrorMsg, setShowCreate, handleRefresh }) => {
+const UserInput = ({ updateErrorMsg, setShowCreate, handleRefresh }) => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -21,11 +21,14 @@ const UserInput = ({ setErrorMsg, setShowCreate, handleRefresh }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('User Data Submitted:', formData);
         createUser(formData)
             .then((data) => {
-                if (data) {
-                    setErrorMsg(data);
+                if (typeof data === 'string') {
+                    if(data == "Error"){
+                        updateErrorMsg("Something went wrong while creating User.")
+                    }else{
+                        updateErrorMsg("User Created Successfully.")
+                    }
                     setShowCreate(false);
                     setTimeout(handleRefresh, 2000);
                 }

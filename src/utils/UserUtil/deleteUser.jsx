@@ -8,16 +8,14 @@ const deleteUser = async (id) => {
             },
         });
 
-        let result = await response.json();
-        if (result.success) {
-            console.log(result.message);
+        if (response.status == 200) {
             return "User Successfully Deleted.";
         } else {
-            return "Error Deleting the User.";
+            return "Error";
         }
     } catch (error) {
         console.error('Error deleting user:', error);
-        return 'There is some error. Please try again.';
+        return 'Error';
     }
 };
 

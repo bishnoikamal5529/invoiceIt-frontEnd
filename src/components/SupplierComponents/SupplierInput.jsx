@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import {createSupplier} from '../../utils/supplierUtil/createSupplier'
 
-const SupplierInput = ({setErrorMsg, setShowCreate, handleRefresh}) => {
+const SupplierInput = ({updateErrorMsg, setShowCreate, handleRefresh}) => {
 
     const [formData, setFormData] = useState({
         name: '',
@@ -23,11 +23,13 @@ const SupplierInput = ({setErrorMsg, setShowCreate, handleRefresh}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Supplier Data Submitted:', formData);
         createSupplier(formData)
         .then((data) => {
-            if (typeof data === 'string') {
-                setErrorMsg(data);
+            if (data == 'Error') {
+                updateErrorMsg(data);
+                setShowCreate(false);
+                setTimeout(handleRefresh, 2000);
+            }else{
                 setShowCreate(false);
                 setTimeout(handleRefresh, 2000);
             }

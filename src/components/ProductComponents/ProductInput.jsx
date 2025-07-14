@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { createProduct } from '../../utils/productsUtil/createProduct';
 
-const ProductInput = ({ setShowCreate, setErrorMsg, handleRefresh }) => {
+const ProductInput = ({ setShowCreate, updateErrorMsg, handleRefresh }) => {
     const [formData, setFormData] = useState({
         name: '',
         sku: '',
@@ -28,13 +28,13 @@ const ProductInput = ({ setShowCreate, setErrorMsg, handleRefresh }) => {
                     },
                 });
                 if (!response.ok) {
-                    setErrorMsg(`HTTP error! status: ${response.status}`);
+                    updateErrorMsg(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
                 return data;
             } catch (error) {
                 console.log('Error fetching supplier list:', error);
-                setErrorMsg(`Error fetching supplier list: ${error.message}`);
+                updateErrorMsg(`Error fetching supplier list: ${error.message}`);
             }
         };
         
@@ -65,7 +65,7 @@ const ProductInput = ({ setShowCreate, setErrorMsg, handleRefresh }) => {
         createProduct(formData)
             .then((data) => {
                 if (typeof data === 'string') {
-                    setErrorMsg(data);
+                    updateErrorMsg(data);
                     setShowCreate(false);
                     setTimeout(handleRefresh, 2000);
                 }

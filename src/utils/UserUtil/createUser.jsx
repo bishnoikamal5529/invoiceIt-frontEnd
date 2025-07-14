@@ -19,17 +19,15 @@ const createUser = async (data) => {
             },
             body: JSON.stringify(userData),
         });
-
-        let user = await response.json();        
-        if (user) {
-            console.log(user.data);
+        
+        if (response.status == 201) {
             return 'User Successfully Created.';
         } else {
-            return 'Error Creating a User';
+            return 'Error';
         }
     } catch (error) {
-        console.error('Error creating user:', error);
-        return 'There is some error. Please try again.';
+        console.error('Error creating User:', error);
+        return 'Error';
     }
 };
 

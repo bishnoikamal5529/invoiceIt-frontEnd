@@ -8,16 +8,14 @@ const deleteCustomer = async (id) => {
             },
         });
 
-        let result = await response.json();
-        if (result.success) {
-            console.log(result.message);
+        if (response.status == 200) {
             return "Customer Successfully Deleted.";
         } else {
-            return "Error Deleting the Customer.";
+            return "Error";
         }
     } catch (error) {
         console.error('Error deleting customer:', error);
-        return 'There is some error. Please try again.';
+        return 'Error';
     }
 };
 

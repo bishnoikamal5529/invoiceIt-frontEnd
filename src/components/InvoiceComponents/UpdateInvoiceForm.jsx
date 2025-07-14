@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import updateInvoice from '../../utils/invoiceUtil/updateInvoice';
 
-const UpdateInvoiceForm = ({ defaultValues, onCancel, setErrorMsg }) => {
+const UpdateInvoiceForm = ({ defaultValues, onCancel, updateErrorMsg }) => {
     const [formData, setFormData] = useState({
         ...defaultValues
     });
@@ -14,19 +14,13 @@ const UpdateInvoiceForm = ({ defaultValues, onCancel, setErrorMsg }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData._id);
         
-        await updateInvoice(formData._id, formData).then(() => {
-            if (data) {
-                console.log(formData.status);
-                onCancel();
-            }
-        }).catch((err) => {
-            if(typeof(err) === 'string'){
-                setErrorMsg(err)
-            }
-            onCancel();
-        })
+        let data = await updateInvoice(formData._id, formData);
+        if(data == "Error"){
+            updateErrorMsg("Something went wrong while updating the product. Please try again later.");
+        }
+        onCancel();
+        
     };
 
     return (

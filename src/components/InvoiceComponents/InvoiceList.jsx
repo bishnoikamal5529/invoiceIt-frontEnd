@@ -8,7 +8,7 @@ import SearchInvoice from './SearchInvoice';
 import ConfirmDelete from '../GlobalComponents/ConfirmDelete';
 
 
-const InvoiceList = ({invoices, setErrorMsg, handleRefresh, handleUpdate}) => {
+const InvoiceList = ({invoices, updateErrorMsg, handleRefresh, handleUpdate}) => {
 
     const [showCreate ,setShowCreate] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
@@ -67,7 +67,7 @@ const InvoiceList = ({invoices, setErrorMsg, handleRefresh, handleUpdate}) => {
             }
         }).catch((err) => {
             console.log(err);
-            setErrorMsg(err)
+            updateErrorMsg(err)
         })
         return () => {
             ignore = false;
@@ -99,7 +99,7 @@ const InvoiceList = ({invoices, setErrorMsg, handleRefresh, handleUpdate}) => {
                     setShowCreate={setShowCreate}  
                     handleRefresh={handleRefresh}
                     productList={createProductList}
-                    setErrorMsg={setErrorMsg}
+                    updateErrorMsg={updateErrorMsg}
                      />}
 
     {showSearch && <SearchInvoice 

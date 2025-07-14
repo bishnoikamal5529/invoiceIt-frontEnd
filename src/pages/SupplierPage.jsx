@@ -20,7 +20,7 @@ const SupplierPage = () => {
 
             if (!localStorage.authToken) {
                 ignore = false;
-                setErrorMsg("You need to login again.");
+                updateErrorMsg("You need to login again.");
             }
             const getAllSuppliers = async () => {
                 try {
@@ -47,7 +47,13 @@ const SupplierPage = () => {
                 }
             };
 
-            setErrorMsg("Updating Suppliers....");
+            if(errorMsg){
+                updateErrorMsg(errorMsg + " Updating Suppliers...");
+            }
+            else{
+                updateErrorMsg("Updating Suppliers...");
+            }
+
             setTimeout(() => {
                 getAllSuppliers().then(entity => {
                     console.log(entity);
@@ -61,7 +67,6 @@ const SupplierPage = () => {
                         console.log("setting suppliers");
                         
                         setSuppliers(newList);
-                        setErrorMsg(false);
                     }
                 });
             }, 1000);
@@ -91,7 +96,6 @@ const SupplierPage = () => {
     };
 
     const handleRefresh = async () => {
-
         getAllSuppliers().then(entity => {
             console.log(entity);
             let newList = [];
@@ -107,16 +111,23 @@ const SupplierPage = () => {
     };
 
     const handleDelete = async (id) => {
-        console.log(`Deleting supplier with ID: ${id}`);
-         const res = await deleteSupplier(id)
-                if(res){
-                    setTimeout(handleRefresh, 1000);
-                }
-                else{
-                    setErrorMsg("Error Delete Product");
-                }
+         const res = await deleteSupplier(id);         
+        if(res != "Error"){
+                setTimeout(handleRefresh, 1000);
+            }
+        else{            
+                updateErrorMsg("Error Deleting Supplier");
+            }
         
     };
+
+    
+    const updateErrorMsg = (msg) => {
+        setErrorMsg(msg);
+        setTimeout(() => {
+            setErrorMsg(false);
+        },5000)
+    }
 
     return (
         <div>
@@ -129,6 +140,7 @@ const SupplierPage = () => {
                 <UpdateSupplierForm
                     defaultValues={activeUpdate}
                     onCancel={() => setActiveUpdate(!activeUpdate)}
+                    updateErrorMsg={updateErrorMsg}
                 />
             ) : (
                 <div className='w-100 d-flex justify-content-center flex-column'>
@@ -137,7 +149,7 @@ const SupplierPage = () => {
                             suppliers={suppliers}
                             handleUpdate={handleUpdate}
                             handleDelete={handleDelete}
-                            setErrorMsg={setErrorMsg}
+                            updateErrorMsg={updateErrorMsg}
                             handleRefresh={handleRefresh}
                         />
                     ) : (

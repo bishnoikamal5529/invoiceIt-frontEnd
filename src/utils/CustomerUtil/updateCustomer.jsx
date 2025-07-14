@@ -15,18 +15,18 @@ const updateCustomer = async (id, updatedCustomerData) => {
         });
 
         if (!response.ok) {
-            return "There is some error while updating the Customer.";
+            return "Error";
         }
 
         const data = await response.json();
 
         if (!data) {
-            return "Bad Auth";
-        }
+            return "Error";
+        }        
         return data;
     } catch (error) {
-        console.error('Error updating customer:', error);
-        return "Error updating customer";
+        console.error('Error updating product:', error);
+        return "Error";
     }
 };
 

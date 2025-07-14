@@ -9,19 +9,19 @@ const getAllInvoices = async () => {
         });
 
         if (!response.ok) {
-            throw new Error("There is some error while retrieving invoices.");
+            return "Error"
         }
 
         const data = await response.json();
 
         if (!data) {
-            throw new Error("Bad Auth");
+            return "Error"
         }
 
         return data;
     } catch (error) {
         console.error('Error fetching invoices:', error);
-        throw new Error("Error fetching invoices");
+        return "Error"
     }
 };
 

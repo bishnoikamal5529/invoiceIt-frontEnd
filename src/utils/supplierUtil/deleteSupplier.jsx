@@ -6,18 +6,15 @@ const deleteSupplier = async (id) => {
             headers: {
                 Authorization: `Bearer ${localStorage.authToken}`,
             },
-        });
-
-        let result = await response.json();
-        if (result.success) {
-            console.log(result.message);
-            return "Supplier Successfully Deleted.";
+        });        
+        if (!response.ok) {
+            return "Error";
         } else {
-            return "Error Deleting the Supplier.";
+            return "Success";
         }
     } catch (error) {
         console.error('Error deleting supplier:', error);
-        return 'There is some error. Please try again.';
+        return 'Error';
     }
 };
 

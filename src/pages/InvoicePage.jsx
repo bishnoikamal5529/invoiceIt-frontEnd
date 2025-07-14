@@ -44,7 +44,12 @@ const InvoicePage = () => {
             }
         };
 
-        setErrorMsg("Updating Invoices....");
+        if(errorMsg){
+            updateErrorMsg(errorMsg + "- Updating Invoices...");
+        }
+        else{
+            updateErrorMsg("Updating Invoices...");
+        }
         setTimeout(() => {
             getAllInvoices().then(entity => {
                 console.log(entity);
@@ -56,7 +61,6 @@ const InvoicePage = () => {
                     }
                     
                     setInvoices(newList);
-                    setErrorMsg(false);
                 }
             });
         }, 500);
@@ -104,11 +108,16 @@ const InvoicePage = () => {
 
     const handleUpdate = (invoice) => {
         if(invoice){            
-                setActiveUpdate(invoice);
-        }
-        
-        
+            setActiveUpdate(invoice);
+        }   
     };
+
+    const updateErrorMsg = (msg) => {
+        setErrorMsg(msg);
+        setTimeout(() => {
+            setErrorMsg(false);
+        },5000)
+    }
 
     return (
         <div>
@@ -117,17 +126,30 @@ const InvoicePage = () => {
                     {errorMsg}
                 </Alert>
             }
-            {   activeUpdate ? <UpdateInvoiceForm defaultValues={activeUpdate} onCancel={() => setActiveUpdate(null)} setErrorMsg={setErrorMsg} />
-                :<div className='w-100 d-flex justify-content-center flex-column'>
-                    {
-                        invoices ?
-                            <InvoiceList setErrorMsg={setErrorMsg} invoices={invoices} handleUpdate={handleUpdate} handleRefresh={handleRefresh} /> :
-                            <Spinner className='my-5 mx-auto' animation="border" variant="dark" />
-                    }
-                    <Button variant="dark" className='w-25 m-auto' onClick={handleRefresh}>
-                        Refresh List
-                    </Button>
-                </div>
+            {   activeUpdate ? 
+                        <UpdateInvoiceForm 
+                            defaultValues={activeUpdate} 
+                            onCancel={() => setActiveUpdate(null)} 
+                            updateErrorMsg={updateErrorMsg}
+                            /> :
+                        
+                        <div className='w-100 d-flex justify-content-center flex-column'>
+                            {
+                                invoices ?
+                                    <InvoiceList 
+                                        updateErrorMsg={updateErrorMsg} 
+                                        invoices={invoices} 
+                                        handleUpdate={handleUpdate} 
+                                        handleRefresh={handleRefresh} /> :
+                                    <Spinner 
+                                        className='my-5 mx-auto' 
+                                        animation="border" 
+                                        variant="dark" />
+                            }
+                            <Button variant="dark" className='w-25 m-auto' onClick={handleRefresh}>
+                                Refresh List
+                            </Button>
+                        </div>
             }
         </div>
     );

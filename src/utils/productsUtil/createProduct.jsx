@@ -28,12 +28,11 @@ export const createProduct = async (data) => {
             console.log(product.data);
             return "Product Successfully Created."
         }else{
-            return "Error Creating a Product";
+            return "Error";
         }
 
     } catch (error) {
         console.error('Error creating product:', error);
-        return 'There is some error. Please try again.';
-        
+        return "Error";        
     }
 };

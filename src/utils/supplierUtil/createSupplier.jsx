@@ -22,16 +22,14 @@ export const createSupplier = async (data) => {
             body: JSON.stringify(supplierData),
         });
 
-        let supplier = await response.json();
-        if (supplier) {
-            console.log(supplier.data);
-            return "Supplier Successfully Created.";
+        if (response.ok) {
+            return "Success";
         } else {
-            return "Error Creating a Supplier";
+            return "Error";
         }
 
     } catch (error) {
         console.error('Error creating supplier:', error);
-        return 'There is some error. Please try again.';
+        return 'Error';
     }
 };

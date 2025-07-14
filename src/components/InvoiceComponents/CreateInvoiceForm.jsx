@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Form, Button, Row, Col, Table } from 'react-bootstrap';
 import { createInvoice } from '../../utils/invoiceUtil/createInvoice';
 
-const CreateInvoiceForm = ({setErrorMsg, itemsList, invoiceNum, removeItem, increaseQuantity, decreaseQuantity, productList, handleRefresh, setShowCreate }) => {
+const CreateInvoiceForm = ({updateErrorMsg, itemsList, invoiceNum, removeItem, increaseQuantity, decreaseQuantity, productList, handleRefresh, setShowCreate }) => {
     const [invoiceNumber, setInvoiceNumber] = useState(invoiceNum);
     const [customerName, setCustomerName] = useState('');
     const [customerEmail, setCustomerEmail] = useState('');
@@ -23,9 +23,7 @@ const CreateInvoiceForm = ({setErrorMsg, itemsList, invoiceNum, removeItem, incr
     const handleSubmit = async (e) => {
         e.preventDefault();
         if(itemsList.length == 0){
-            setErrorMsg("Cannot Create An Empty Invoice");
-            setTimeout(() => {
-                setErrorMsg(null)}, 5000);
+            updateErrorMsg("Cannot Create An Empty Invoice");
             setShowCreate(false);
         }else {
         const invoiceData = {
@@ -55,6 +53,9 @@ const CreateInvoiceForm = ({setErrorMsg, itemsList, invoiceNum, removeItem, incr
 
         const response = await createInvoice(finalData);
         console.log(response)
+        if(response == 'Error'){
+            updateErrorMsg("Something went wrong while creating invoice. Please try again later.");
+        }
         setShowCreate(false);
         setTimeout(handleRefresh, 1000);     
     }   

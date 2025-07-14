@@ -14,18 +14,18 @@ const updateInvoice = async (id, updatedInvoiceData) => {
         });
 
         if (!response.ok) {
-            return "There is some error while updating the Invoice.";
+            return "Error";
         }
 
         const data = await response.json();
 
         if (!data) {
-            return "Bad Auth";
-        }
+            return "Error";
+        }        
         return data;
     } catch (error) {
         console.error('Error updating invoice:', error);
-        return "Error updating invoice";
+        return "Error";
     }
 };
 

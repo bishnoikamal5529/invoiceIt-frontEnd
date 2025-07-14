@@ -6,7 +6,7 @@ import UserInput from './UserInput';
 import SearchUser from './SearchUser';
 import ConfirmDelete from '../GlobalComponents/ConfirmDelete';
 
-const UserList = ({users, handleUpdate, handleDelete, setErrorMsg, handleRefresh}) => {
+const UserList = ({users, handleUpdate, handleDelete, updateErrorMsg, handleRefresh}) => {
 
     const [showCreate ,setShowCreate] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
@@ -38,7 +38,7 @@ const UserList = ({users, handleUpdate, handleDelete, setErrorMsg, handleRefresh
 
     {showCreate && <UserInput 
                     setShowCreate={setShowCreate} 
-                    setErrorMsg={setErrorMsg} 
+                    updateErrorMsg={updateErrorMsg} 
                     handleRefresh={handleRefresh} />}
 
     {showSearch && <SearchUser 

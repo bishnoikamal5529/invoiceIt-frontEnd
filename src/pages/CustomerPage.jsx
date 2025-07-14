@@ -46,7 +46,12 @@ const CustomerPage = () => {
                 }
             };
 
-            setErrorMsg("Updating Customers....");
+            if(errorMsg){
+                updateErrorMsg(errorMsg + " Updating Customers...");
+            }
+            else{
+                updateErrorMsg("Updating Customers...");
+            }
             setTimeout(() => {
                 getAllCustomers().then(entity => {
                     console.log(entity);
@@ -58,7 +63,6 @@ const CustomerPage = () => {
                         }
 
                         setCustomers(newList);
-                        setErrorMsg(false);
                     }
                 });
             }, 200);
@@ -87,7 +91,6 @@ const CustomerPage = () => {
 
     const handleRefresh = () => {
         getAllCustomers().then(entity => {
-            console.log(entity);
             let newList = [];
             if (entity) {
                 for (let i = 0; i < entity.length; i++) {
@@ -101,14 +104,19 @@ const CustomerPage = () => {
     };
 
     const handleDelete = async (id) => {
-        console.log(`Deleting customer with ID: ${id}`);
         const res = await deleteCustomer(id);
-        if (res) {
+        if (res != 'Error') {
             setTimeout(handleRefresh, 1000);
         } else {
-            setErrorMsg("Error Deleting Customer");
+            updateErrorMsg("Error Deleting Customer");
         }
     };
+    const updateErrorMsg = (msg) => {
+        setErrorMsg(msg);
+        setTimeout(() => {
+            setErrorMsg(false);
+        },5000)
+    }
 
     return (
         <div>
@@ -118,11 +126,20 @@ const CustomerPage = () => {
                 </Alert>
             }
             {
-                activeUpdate ? <UpdateCustomerForm defaultValues={activeUpdate} onCancel={() => setActiveUpdate(!activeUpdate)} setErrorMsg={setErrorMsg} />
+                activeUpdate ? 
+                    <UpdateCustomerForm 
+                        defaultValues={activeUpdate} 
+                        onCancel={() => setActiveUpdate(!activeUpdate)} 
+                        updateErrorMsg={updateErrorMsg} />
                 : <div className='w-100 d-flex justify-content-center flex-column'>
                     {
                         customers ?
-                            <CustomerList customers={customers} handleUpdate={handleUpdate} handleDelete={handleDelete} setErrorMsg={setErrorMsg} handleRefresh={handleRefresh} /> :
+                            <CustomerList 
+                                customers={customers} 
+                                handleUpdate={handleUpdate} 
+                                handleDelete={handleDelete} 
+                                updateErrorMsg={updateErrorMsg} 
+                                handleRefresh={handleRefresh} /> :
                             <Spinner className='my-5 mx-auto' animation="border" variant="dark" />
                     }
                     <Button variant="dark" className='w-25 m-auto' onClick={handleRefresh}>

@@ -5,7 +5,7 @@ import CreateInvoiceForm from './CreateInvoiceForm';
 import { prefetchDNS } from 'react-dom';
 
 
-const InvoiceInput = ({setErrorMsg, setShowCreate, handleRefresh, productList }) => {
+const InvoiceInput = ({updateErrorMsg, setShowCreate, handleRefresh, productList }) => {
     const [itemsList, setItemList] = useState([]);
 
     const addItem = (item) => {
@@ -29,9 +29,7 @@ const InvoiceInput = ({setErrorMsg, setShowCreate, handleRefresh, productList })
             if(itemsList[i].name !== name){
                 newList.push(itemsList[i]);
             } 
-        }
-        console.log(newList);
-        
+        }        
         setItemList(newList);
     }
 
@@ -87,15 +85,15 @@ const InvoiceInput = ({setErrorMsg, setShowCreate, handleRefresh, productList })
             <Row className='w-100'>
                 <Col className=' border-end'>
                     <CreateInvoiceForm  
-                    removeItem={removeItem}
-                    increaseQuantity={increaseQuantity}
-                    decreaseQuantity={decreaseQuantity}
-                    invoiceNum={"INV" + Date.now()} 
-                    itemsList={itemsList} 
-                    productList={productList}
-                    handleRefresh={handleRefresh}
-                    setShowCreate={setShowCreate}
-                    setErrorMsg={setErrorMsg}
+                        removeItem={removeItem}
+                        increaseQuantity={increaseQuantity}
+                        decreaseQuantity={decreaseQuantity}
+                        invoiceNum={"INV" + Date.now()} 
+                        itemsList={itemsList} 
+                        productList={productList}
+                        handleRefresh={handleRefresh}
+                        setShowCreate={setShowCreate}
+                        updateErrorMsg={updateErrorMsg}
                     />
                 </Col>
                 <Col className=''>

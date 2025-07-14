@@ -7,7 +7,7 @@ import SearchProduct from './SearchProduct';
 import ConfirmDelete from '../GlobalComponents/ConfirmDelete';
 
 
-const ProductList = ({products, handleUpdate, handleDelete, setErrorMsg, handleRefresh}) => {
+const ProductList = ({products, handleUpdate, handleDelete, updateErrorMsg, handleRefresh}) => {
 
     const [showCreate ,setShowCreate] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
@@ -37,7 +37,7 @@ const ProductList = ({products, handleUpdate, handleDelete, setErrorMsg, handleR
 
     {showCreate && <ProductInput 
                     setShowCreate={setShowCreate} 
-                    setErrorMsg={setErrorMsg} 
+                    updateErrorMsg={updateErrorMsg} 
                     handleRefresh={handleRefresh} />}
 
     {showSearch && <SearchProduct 
@@ -47,7 +47,8 @@ const ProductList = ({products, handleUpdate, handleDelete, setErrorMsg, handleR
          currentID={currentID.current} 
          onDelete={handleDelete} 
          handleRefresh={handleRefresh} 
-         setShowDelete={setShowDelete} />}
+         setShowDelete={setShowDelete} 
+         />}
 
     <Table striped bordered hover>
         <thead>

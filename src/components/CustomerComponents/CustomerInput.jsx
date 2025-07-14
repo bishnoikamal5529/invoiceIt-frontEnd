@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import  createCustomer  from '../../utils/CustomerUtil/createCustomer';
 
-const CustomerInput = ({ setShowCreate, setErrorMsg, handleRefresh }) => {
+const CustomerInput = ({ setShowCreate, updateErrorMsg, handleRefresh }) => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -20,11 +20,10 @@ const CustomerInput = ({ setShowCreate, setErrorMsg, handleRefresh }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Customer Data Submitted:', formData);
         createCustomer(formData)
             .then((data) => {
                 if (typeof data === 'string') {
-                    setErrorMsg(data);
+                    updateErrorMsg(data);
                     setShowCreate(false);
                     setTimeout(handleRefresh, 2000);
                 }

@@ -48,10 +48,14 @@ const ProductPage = () => {
                 }
             };
 
-            setErrorMsg("Updating Products....");
+            if(errorMsg){
+                updateErrorMsg(errorMsg + " Updating Products...");
+            }
+            else{
+                updateErrorMsg("Updating Products...");
+            }
             setTimeout(() => {
                     getAllProducts().then(entity => {
-                        console.log(entity);
                         let newList = new Array;
                         if(ignore && entity && entity.success){
                             for(let i=0; i<entity.data.length; i++){
@@ -60,10 +64,9 @@ const ProductPage = () => {
                             }
                         
                             setProducts(newList);
-                            setErrorMsg(false);
                         }  
                     })
-                }, 1000)
+                }, 500)
         
                 return () => {
                     ignore = false;
@@ -71,9 +74,14 @@ const ProductPage = () => {
             }
         }, [activeUpdate]);
 
-    const handleUpdate = (product) => {
+    const updateErrorMsg = (msg) => {
+        setErrorMsg(msg);
+        setTimeout(() => {
+            setErrorMsg(false);
+        },5000)
+    }
 
-        console.log(product);
+    const handleUpdate = (product) => {
         if(product){
             let defaultValues = {
                 _id: product._id,
@@ -92,6 +100,7 @@ const ProductPage = () => {
     };
 
     const handleRefresh = () => {
+
         getAllProducts().then(entity => {
             console.log(entity);
             let newList = new Array;
@@ -100,20 +109,18 @@ const ProductPage = () => {
                     newList[i] = entity.data[i];
                     newList[i].id = i+1;
                 }
-            
                 setProducts(newList);
             }  
         })
     }
 
-    const handleDelete =async (id) => {
-        console.log(`Deleting product with ID: ${id}`);
-        const res = await deleteProduct(id)
-        if(res){
+    const handleDelete = async (id) => {
+        const res = await deleteProduct(id);        
+        if(res == 'Success'){
             setTimeout(handleRefresh, 1000);
         }
         else{
-            setErrorMsg("Error Delete Product");
+            updateErrorMsg("Something went wrong while deleting the product. Please referesh the page, login again or try again later.");
         }
     };
 
@@ -125,17 +132,30 @@ const ProductPage = () => {
                 </Alert>
             }
             {
-                activeUpdate ? <UpdateProductForm defaultValues={activeUpdate} onCancel={() => setActiveUpdate(!activeUpdate)} setErrorMsg={setErrorMsg} />
-                :<div className='w-100 d-flex justify-content-center flex-column'>
-                {
-                    products ? 
-                        <ProductList products={products} handleUpdate={handleUpdate} handleDelete={handleDelete} setErrorMsg={setErrorMsg} handleRefresh={handleRefresh} />:
-                        <Spinner className='my-5 mx-auto' animation="border" variant="dark" />
-                }
-                <Button variant="dark" className='w-25 m-auto' onClick={handleRefresh}>
-                    Refresh List
-                 </Button>
-                </div>
+                activeUpdate ? 
+                    <UpdateProductForm 
+                        defaultValues={activeUpdate} 
+                        onCancel={() => setActiveUpdate(!activeUpdate)} 
+                        updateErrorMsg={updateErrorMsg} />:
+                    <div className='w-100 d-flex justify-content-center flex-column'>
+                        {
+                            products ? 
+                                <ProductList 
+                                    products={products} 
+                                    handleUpdate={handleUpdate} 
+                                    handleDelete={handleDelete} 
+                                    updateErrorMsg={updateErrorMsg} 
+                                    handleRefresh={handleRefresh} />:
+
+                                <Spinner 
+                                    className='my-5 mx-auto' 
+                                    animation="border" 
+                                    variant="dark" />
+                        }
+                        <Button variant="dark" className='w-25 m-auto' onClick={handleRefresh}>
+                            Refresh List
+                        </Button>
+                    </div>
             }
         </div>
     );

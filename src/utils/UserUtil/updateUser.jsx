@@ -9,25 +9,25 @@ const updateUser = async (id, updatedUserData) => {
             body: JSON.stringify({
                 name: updatedUserData.name,
                 email: updatedUserData.email,
-                password: updatedUserData.password,
                 role: updatedUserData.role,
                 phone: updatedUserData.phone,
             }),
         });
-
+        
+        
         if (!response.ok) {
-            return "There is some error while updating the User.";
+            return "Error";
         }
 
         const data = await response.json();
-
+        
         if (!data) {
-            return "Bad Auth";
-        }
+            return "Error";
+        }        
         return data;
     } catch (error) {
-        console.error('Error updating user:', error);
-        return "Error updating user";
+        console.error('Error updating User:', error);
+        return "Error";
     }
 };
 

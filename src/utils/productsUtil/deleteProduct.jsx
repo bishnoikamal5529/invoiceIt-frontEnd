@@ -8,15 +8,13 @@ export const deleteProduct = async (id) => {
             },
         });
 
-        let result = await response.json();
-        if (result.success) {
-            console.log(result.message);
-            return "Product Successfully Deleted.";
-        } else {
-            return "Error Deleting the Product.";
+        if (response.ok) {
+            return "Success";
+        } else {            
+            return "Error";
         }
     } catch (error) {
         console.error('Error deleting product:', error);
-        return 'There is some error. Please try again.';
+        return 'Error';
     }
 };

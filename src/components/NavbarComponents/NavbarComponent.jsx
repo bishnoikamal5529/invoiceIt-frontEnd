@@ -1,19 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Container, Nav, Navbar, Row, Col } from 'react-bootstrap'
-import getAllUsers from '../../utils/UserUtil/getAllUser';
 
 function NavbarComponent() {
 
-  const [showProtectedLinks, setShowProtectedLinks] = useState(false)
+  const [showProtectedLinks, setShowProtectedLinks] = useState(false);  
 
   useEffect(() => {
-    let ignore = true;
+    let ignore = false;
     let errorString = "";
-
-      console.log("running navbar effect");
       
         if (!localStorage.authToken) {
-            ignore = false;
+            ignore = true;
         }else{
           const fetchUsers = async () => {
             try {
@@ -31,7 +28,7 @@ function NavbarComponent() {
             }
           };
           fetchUsers().then(status => {
-            if(status != 403){
+            if(status != 403 && !ignore){
               setShowProtectedLinks(true);
             }
             }
@@ -47,42 +44,31 @@ function NavbarComponent() {
   return (
     <>
       <Navbar bg="dark" expand="lg" data-bs-theme="dark">
-        <Container>
+      <Container>
           <Navbar.Brand href="/">
           <span className='text-primary-emphasis'>Invoice</span>
           <span className='text-danger'>It</span>
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Row className="w-100">
-                <Col className="d-flex align-items-center">
-                  <Nav.Link href="/product">Products</Nav.Link>
-                </Col>
-                <Col className="d-flex align-items-center">
-                  <Nav.Link href="/invoice">Invoices</Nav.Link>
-                </Col>
-                <Col className="d-flex align-items-center">
-                  <Nav.Link href="/customer">Customer</Nav.Link>
-                </Col>
-                <Col className="d-flex align-items-center">
-                  <Nav.Link href="/supplier">Supplier</Nav.Link>
-                </Col>
+          <section className='text-white d-flex gap-4'>
+                <Nav.Link href="/product">Products</Nav.Link>
+                <Nav.Link href="/invoice">Invoices</Nav.Link>
+                <Nav.Link href="/customer">Customer</Nav.Link>
+                <Nav.Link href="/supplier">Supplier</Nav.Link>
                 {
                   showProtectedLinks && <Col className="d-flex align-items-center">
                     <Nav.Link href="/user">Users</Nav.Link>
                   </Col>
                 }
-                <Col className="d-flex align-items-center justify-content-end gap-2">
-                  <a className='link-underline-dark text-primary-emphasis' href="/login">Login</a>
-                  <a className='text-white link-underline-dark'>
-                    |
+                <article className='d-flex gap-1'>
+                  <a href='/login' className='text-primary-emphasis link-underline-dark'>
+                    Login
+                  </a>|
+                  <a href='/signup' className='text-danger link-underline-dark'>
+                    SignUp
                   </a>
-                  <a className='link-underline-dark text-danger' href="/signup">SignUp</a>
-                </Col>
-              </Row>
-            </Nav>
-          </Navbar.Collapse>
+                </article>
+          </section>
+                  
         </Container>
       </Navbar>
     </>

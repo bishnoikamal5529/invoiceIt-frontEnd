@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Form, Button, Container, Dropdown } from 'react-bootstrap';
 import updateUser from '../../utils/UserUtil/updateUser';
 
-const UpdateUserForm = ({ defaultValues, onCancel }) => {
+const UpdateUserForm = ({ defaultValues, onCancel, updateErrorMsg }) => {
     const [formData, setFormData] = useState({
         name: defaultValues.name || '',
         email: defaultValues.email || '',
@@ -19,12 +19,13 @@ const UpdateUserForm = ({ defaultValues, onCancel }) => {
         setFormData({ ...formData, role });
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const data = updateUser(defaultValues._id, formData);
-        if (data) {
-            onCancel();
+    const handleSubmit = async (e) => {
+        e.preventDefault();        
+        const data = await updateUser(defaultValues._id, formData);
+        if(data == "Error"){
+            updateErrorMsg("Something went wrong while updating the User. Please try again later.");
         }
+        onCancel();
     };
 
     return (
