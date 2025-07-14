@@ -49,16 +49,26 @@ function NavbarComponent() {
           <span className='text-primary-emphasis'>Invoice</span>
           <span className='text-danger'>It</span>
           </Navbar.Brand>
-          <section className='text-white d-flex gap-4'>
+          <section className='text-white d-flex flex-end gap-4 p-2'>
+            <Row>
+              <Col>
                 <Nav.Link href="/product">Products</Nav.Link>
-                <Nav.Link href="/invoice">Invoices</Nav.Link>
-                <Nav.Link href="/customer">Customer</Nav.Link>
-                <Nav.Link href="/supplier">Supplier</Nav.Link>
-                {
+              </Col>
+              <Col>
+              <Nav.Link href="/invoice">Invoices</Nav.Link>
+              </Col>
+              <Col>
+              <Nav.Link href="/customer">Customer</Nav.Link>
+              </Col>
+              <Col>
+              <Nav.Link href="/supplier">Supplier</Nav.Link>
+              </Col>
+              {
                   showProtectedLinks && <Col className="d-flex align-items-center">
                     <Nav.Link href="/user">Users</Nav.Link>
                   </Col>
                 }
+                <Col>
                 <article className='d-flex gap-1'>
                   <a href='/login' className='text-primary-emphasis link-underline-dark'>
                     Login
@@ -67,6 +77,8 @@ function NavbarComponent() {
                     SignUp
                   </a>
                 </article>
+                </Col>
+            </Row>
           </section>
                   
         </Container>

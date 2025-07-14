@@ -50,51 +50,53 @@ const CustomerList = ({customers, handleUpdate, handleDelete, updateErrorMsg, ha
          handleRefresh={handleRefresh} 
          setShowDelete={setShowDelete} />}
 
-    <Table striped bordered hover>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th>Created At</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {customers && customers.map(customer => (
-            <tr key={customer.id}>
-                <td>{customer.id}</td>
-                <td>{customer.name}</td>
-                <td>{customer.email}</td>
-                <td>{customer.phone}</td>
-                <td>{customer.address}</td>
-                <td>{new Date(customer.createdAt).toLocaleDateString()}</td>
-                <td className='d-flex flex-column gap-1'>
-                    <Button 
-                        variant="warning" 
-                        className="me-2" 
-                        onClick={() => handleUpdate(customer)}
-                    >
-                        Update
-                    </Button>
-                    <Button 
-                        variant="danger" 
-                        onClick={() => 
-                            {
-                                currentID.current = customer._id;
-                                setShowDelete(true);
+    <Container className='overflow-auto'>
+        <Table striped bordered hover>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {customers && customers.map(customer => (
+                <tr key={customer.id}>
+                    <td>{customer.id}</td>
+                    <td>{customer.name}</td>
+                    <td>{customer.email}</td>
+                    <td>{customer.phone}</td>
+                    <td>{customer.address}</td>
+                    <td>{new Date(customer.createdAt).toLocaleDateString()}</td>
+                    <td className='d-flex flex-column gap-1'>
+                        <Button 
+                            variant="warning" 
+                            className="me-2" 
+                            onClick={() => handleUpdate(customer)}
+                        >
+                            Update
+                        </Button>
+                        <Button 
+                            variant="danger" 
+                            onClick={() => 
+                                {
+                                    currentID.current = customer._id;
+                                    setShowDelete(true);
+                                }
                             }
-                        }
-                    >
-                        Delete
-                    </Button>
-                </td>
-            </tr>
-        ))}
-        </tbody>
-    </Table>
+                        >
+                            Delete
+                        </Button>
+                    </td>
+                </tr>
+            ))}
+            </tbody>
+        </Table>
+    </Container>
 </Container>
 };
 

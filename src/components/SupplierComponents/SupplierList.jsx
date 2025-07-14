@@ -51,7 +51,7 @@ const SupplierList = ({suppliers, handleUpdate, handleDelete, updateErrorMsg, ha
             </Row>
             <Row className="mt-4">
                 <Col>
-                    <h3>Supplier List</h3>
+                <Container className='overflow-auto'>
                     <Accordion>
                         {suppliers.map((supplier, index) => (
                             <Accordion.Item eventKey={index.toString()} key={supplier.id}>
@@ -93,6 +93,7 @@ const SupplierList = ({suppliers, handleUpdate, handleDelete, updateErrorMsg, ha
                             </Accordion.Item>
                         ))}
                     </Accordion>
+                    </Container>
                 </Col>
             </Row>
         </Container>

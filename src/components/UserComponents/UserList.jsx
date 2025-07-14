@@ -49,50 +49,53 @@ const UserList = ({users, handleUpdate, handleDelete, updateErrorMsg, handleRefr
          onDelete={handleDelete} 
          handleRefresh={handleRefresh} 
          setShowDelete={setShowDelete} />}
+        
+    <Container className='overflow-auto'>
 
-    <Table striped bordered hover>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Phone</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {users && users.map(user => (
-            <tr key={user.id}>
-                <td>{user.id}</td>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>{user.role}</td>
-                <td>{user.phone}</td>
-                <td className='d-flex'>
-                    <Button 
-                        variant="warning" 
-                        className="me-2" 
-                        onClick={() => handleUpdate(user)}
-                    >
-                        Update
-                    </Button>
-                    <Button 
-                        variant="danger" 
-                        onClick={() => 
-                            {
-                                currentID.current = user._id;
-                                setShowDelete(true);
-                            }
-                        }
-                    >
-                        Delete
-                    </Button>
-                </td>
-            </tr>
-        ))}
-        </tbody>
-    </Table>
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {users && users.map(user => (
+                    <tr key={user.id}>
+                        <td>{user.id}</td>
+                        <td>{user.name}</td>
+                        <td>{user.email}</td>
+                        <td>{user.role}</td>
+                        <td>{user.phone}</td>
+                        <td className='d-flex'>
+                            <Button 
+                                variant="warning" 
+                                className="me-2" 
+                                onClick={() => handleUpdate(user)}
+                            >
+                                Update
+                            </Button>
+                            <Button 
+                                variant="danger" 
+                                onClick={() => 
+                                    {
+                                        currentID.current = user._id;
+                                        setShowDelete(true);
+                                    }
+                                }
+                            >
+                                Delete
+                            </Button>
+                        </td>
+                    </tr>
+                ))}
+                </tbody>
+            </Table>
+        </Container>
 </Container>
 };
 

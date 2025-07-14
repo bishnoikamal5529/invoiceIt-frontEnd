@@ -110,6 +110,8 @@ const InvoiceList = ({invoices, updateErrorMsg, handleRefresh, handleUpdate}) =>
          onDelete={handleDelete} 
          handleRefresh={handleRefresh} 
          setShowDelete={setShowDelete} />}
+    
+    <Container className='overflow-auto'>
 
         <Accordion>
                 <Table striped bordered hover>
@@ -184,6 +186,7 @@ const InvoiceList = ({invoices, updateErrorMsg, handleRefresh, handleUpdate}) =>
                     </Accordion.Item>
                 ))}
             </Accordion>
+        </Container>
     </Container>
 };
 

@@ -49,54 +49,56 @@ const ProductList = ({products, handleUpdate, handleDelete, updateErrorMsg, hand
          handleRefresh={handleRefresh} 
          setShowDelete={setShowDelete} 
          />}
-
-    <Table striped bordered hover>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>SKU</th>
-                <th>Price</th>
-                <th>Quantity In Stock</th>
-                <th>Category</th>
-                <th>Supplier</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {products && products.map(product => (
-            <tr key={product.id}>
-                <td>{product.id}</td>
-                <td>{product.name}</td>
-                <td>{product.sku}</td>
-                <td>{product.price}</td>
-                <td>{product.quantityInStock}</td>
-                <td>{product.category}</td>
-                <td>{product.supplier.slice(3,10)}</td>
-                <td className='d-flex'>
-                    <Button 
-                        variant="warning" 
-                        className="me-2" 
-                        onClick={() => handleUpdate(product)}
-                    >
-                        Update
-                    </Button>
-                    <Button 
-                        variant="danger" 
-                        onClick={() => 
-                            {
-                                currentID.current = product._id
-                                setShowDelete(true)
+    <Container className='overflow-auto'>
+        <Table striped bordered hover>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>SKU</th>
+                    <th>Price</th>
+                    <th>Quantity In Stock</th>
+                    <th>Category</th>
+                    <th>Supplier</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {products && products.map(product => (
+                <tr key={product.id}>
+                    <td>{product.id}</td>
+                    <td>{product.name}</td>
+                    <td>{product.sku}</td>
+                    <td>{product.price}</td>
+                    <td>{product.quantityInStock}</td>
+                    <td>{product.category}</td>
+                    <td>{product.supplier.slice(3,10)}</td>
+                    <td className='d-flex'>
+                        <Button 
+                            variant="warning" 
+                            className="me-2" 
+                            onClick={() => handleUpdate(product)}
+                        >
+                            Update
+                        </Button>
+                        <Button 
+                            variant="danger" 
+                            onClick={() => 
+                                {
+                                    currentID.current = product._id
+                                    setShowDelete(true)
+                                }
                             }
-                        }
-                    >
-                        Delete
-                    </Button>
-                </td>
-            </tr>
-        ))}
-        </tbody>
-    </Table>
+                        >
+                            Delete
+                        </Button>
+                    </td>
+                </tr>
+            ))}
+            </tbody>
+        </Table>
+    </Container>
+
 </Container>
 };
 
