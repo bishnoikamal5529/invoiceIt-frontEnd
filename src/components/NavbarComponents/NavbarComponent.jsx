@@ -49,7 +49,7 @@ function NavbarComponent() {
           <span className='text-primary-emphasis'>Invoice</span>
           <span className='text-danger'>It</span>
           </Navbar.Brand>
-          <section className='text-white d-flex flex-end gap-4 p-2'>
+          <section className='text-white d-flex flex-end gap-4 p-2 my-1'>
             <Row>
               <Col>
                 <Nav.Link href="/product">Products</Nav.Link>
