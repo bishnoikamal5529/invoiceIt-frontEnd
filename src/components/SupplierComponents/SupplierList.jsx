@@ -55,7 +55,7 @@ const SupplierList = ({suppliers, handleUpdate, handleDelete, updateErrorMsg, ha
                     <Accordion>
                         {suppliers.map((supplier, index) => (
                             <Accordion.Item eventKey={index.toString()} key={supplier.id}>
-                                <Accordion.Header>
+                                <Accordion.Header className=' overflow-auto'>
                                     <Table striped bordered hover>
                                         <tbody>
                                             <tr>

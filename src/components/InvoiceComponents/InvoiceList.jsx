@@ -126,7 +126,7 @@ const InvoiceList = ({invoices, updateErrorMsg, handleRefresh, handleUpdate}) =>
                 </Table>
                 {invoices.map((invoice) => (
                     <Accordion.Item eventKey={invoice.id.toString()} key={invoice.id}>
-                        <Accordion.Header>
+                        <Accordion.Header className=' overflow-auto'>
                             <Table striped bordered hover>
                             <tbody className="">
                                 <tr>
