@@ -54,7 +54,7 @@ const SearchUser = ({ userList }) => {
                 <ListGroup>
                     <ListGroup.Item
                         variant='danger'
-                        className='w-100 d-flex justify-content-between'
+                        className='w-100 d-flex gap-3 overflow-auto justify-content-between'
                     >
                         <strong>Name</strong>|
                         <strong>Email</strong>|
@@ -63,7 +63,7 @@ const SearchUser = ({ userList }) => {
                     </ListGroup.Item>
                     {filteredUsers && filteredUsers.map((user, index) => (
                             <ListGroup.Item 
-                                className='w-100 d-flex justify-content-between'
+                                className='w-100 d-flex gap-3 overflow-auto justify-content-between'
                                 variant='success' 
                                 key={index}>
 

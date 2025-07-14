@@ -56,7 +56,7 @@ const SearchSupplier = ({ supplierList }) => {
                 <ListGroup>
                     <ListGroup.Item
                         variant='danger'
-                        className='w-100 d-flex justify-content-between'
+                        className='w-100 d-flex gap-2 overflow-auto justify-content-between'
                     >
                         <strong>Name</strong>|
                         <strong>Contact Person</strong>|
@@ -68,7 +68,7 @@ const SearchSupplier = ({ supplierList }) => {
                     </ListGroup.Item>
                     {filteredSuppliers && filteredSuppliers.map((supplier, index) => (
                             <ListGroup.Item 
-                                className='w-100 d-flex justify-content-between'
+                                className='w-100 d-flex gap-2 overflow-auto justify-content-between'
                                 variant='success' 
                                 key={index}>
 

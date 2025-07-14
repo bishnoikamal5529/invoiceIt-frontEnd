@@ -54,7 +54,7 @@ const SearchInvoice = ({ invoiceList }) => {
                 <ListGroup>
                     <ListGroup.Item
                         variant='danger'
-                        className='w-100 d-flex justify-content-between'
+                        className='w-100 d-flex gap-3 overflow-auto justify-content-between'
                     >
                         <strong>Invoice No.</strong>|
                         <strong>Customer Email</strong>|
@@ -63,7 +63,7 @@ const SearchInvoice = ({ invoiceList }) => {
                     </ListGroup.Item>
                     {filteredInvoices && filteredInvoices.map((invoice, index) => (
                             <ListGroup.Item 
-                                className='w-100 d-flex justify-content-between'
+                                className='w-100 d-flex gap-3 overflow-auto justify-content-between'
                                 variant='success' 
                                 key={index}>
 

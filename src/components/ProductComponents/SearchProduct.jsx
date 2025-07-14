@@ -55,7 +55,7 @@ const SearchProduct = ({ productList }) => {
                 <ListGroup>
                     <ListGroup.Item
                         variant='danger'
-                        className='w-100 d-flex justify-content-between'
+                        className='w-100 d-flex gap-3 overflow-auto justify-content-between'
                     >
                         <strong>Name</strong>|
                         <strong>SKU</strong>|
@@ -65,7 +65,7 @@ const SearchProduct = ({ productList }) => {
                     </ListGroup.Item>
                     {filteredProducts && filteredProducts.map((product, index) => (
                             <ListGroup.Item 
-                                className='w-100 d-flex justify-content-between'
+                                className='w-100 d-flex gap-3 overflow-auto justify-content-between'
                                 variant='success' 
                                 key={index}>
 
