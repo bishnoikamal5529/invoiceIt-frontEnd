@@ -51,7 +51,9 @@ const UserList = ({users, handleUpdate, handleDelete, updateErrorMsg, handleRefr
          setShowDelete={setShowDelete} />}
         
     <Container className='overflow-auto'>
-
+        <p className='text-center text-muted m-0 p-0' >
+            Scroll to left to see more information
+        </p>
             <Table striped bordered hover>
                 <thead>
                     <tr>

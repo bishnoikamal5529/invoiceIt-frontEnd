@@ -43,33 +43,37 @@ function NavbarComponent() {
 
   return (
     <>
-      <Navbar bg="dark" expand="lg" data-bs-theme="dark">
+      <Navbar bg="dark" className='shadow-lg sticky-top' expand="lg" data-bs-theme="dark">
       <Container>
           <Navbar.Brand href="/">
           <span className='text-primary-emphasis'>Invoice</span>
           <span className='text-danger'>It</span>
           </Navbar.Brand>
-          <section className='text-white d-flex flex-end gap-4 p-2'>
-            <Row>
-              <Col>
+
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className='mx-3'>
+            <Col>
+              <Row className=' link-body-emphasis'>
                 <Nav.Link href="/product">Products</Nav.Link>
-              </Col>
-              <Col>
+              </Row>
+              <Row className='mt-1 link-body-emphasis'>
               <Nav.Link href="/invoice">Invoices</Nav.Link>
-              </Col>
-              <Col>
+              </Row>
+              <Row className='mt-1 link-body-emphasis'>
               <Nav.Link href="/customer">Customer</Nav.Link>
-              </Col>
-              <Col>
+              </Row>
+              <Row className='mt-1 link-body-emphasis'>
               <Nav.Link href="/supplier">Supplier</Nav.Link>
-              </Col>
+              </Row>
               {
-                  showProtectedLinks && <Col className="d-flex align-items-center">
+                  showProtectedLinks && <Row className="d-flex align-items-center mt-1 link-body-emphasis">
                     <Nav.Link href="/user">Users</Nav.Link>
-                  </Col>
+                  </Row>
                 }
-                <Col>
-                <article className='d-flex gap-1'>
+                <Row className='mt-1 link-body-emphasis'>
+                <article className='mx-0 px-0 d-flex gap-1'>
                   <a href='/login' className='text-primary-emphasis link-underline-dark'>
                     Login
                   </a>|
@@ -77,10 +81,11 @@ function NavbarComponent() {
                     SignUp
                   </a>
                 </article>
+                </Row>
                 </Col>
-            </Row>
-          </section>
-                  
+                </Nav>
+          </Navbar.Collapse>
+
         </Container>
       </Navbar>
     </>
