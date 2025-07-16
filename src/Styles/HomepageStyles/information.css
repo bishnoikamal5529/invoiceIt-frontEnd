@@ -1,0 +1,13 @@
+.background-pattern{
+    background-image: url('/home/kamal/Documents/Frontend Projects/invoice-frontend/src/assets/images/02-background-pattern.png');
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+
+.text-size{
+    font-size: 3rem;
+}
+
+.info-paragraph{
+    font-size: large;
+}
