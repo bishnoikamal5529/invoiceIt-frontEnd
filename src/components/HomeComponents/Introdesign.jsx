@@ -1,3 +1,4 @@
+import '/home/kamal/Documents/Frontend Projects/invoice-frontend/src/Styles/HomepageStyles/information.css'
 import {Row} from 'react-bootstrap'
 
 const Introdesign = () => {

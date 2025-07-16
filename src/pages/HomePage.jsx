@@ -1,5 +1,4 @@
 import { Container } from 'react-bootstrap';
-import '../Styles/HomepageStyles/information.css'
 import Heading from '../components/HomeComponents/Heading';
 import Introdesign from '../components/HomeComponents/Introdesign';
 import Introoverview from '../components/HomeComponents/Introoverview';
