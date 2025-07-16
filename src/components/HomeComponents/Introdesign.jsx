@@ -1,5 +1,5 @@
-import '/home/kamal/Documents/Frontend Projects/invoice-frontend/src/Styles/HomepageStyles/information.css'
 import {Row} from 'react-bootstrap'
+import '../../Styles/HomepageStyles/information.css'
 
 const Introdesign = () => {
   return <Row className='background-pattern p-4 m-3 lead shadow-lg rounded-3 text-end'>
