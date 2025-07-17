@@ -81,7 +81,7 @@ const InvoiceInput = ({updateErrorMsg, setShowCreate, handleRefresh, productList
 
     return (
         <Container className='my-5 border-2 border-black rounded-3 shadow-lg'> 
-            <h4 className='text-center pt-3 text-primary-emphasis'>Create a Product</h4>
+            <h4 className='text-center pt-3 text-primary-emphasis'>Input Invoice Details.</h4>
             <Row className='w-100'>
                 <Col className=' border-end'>
                     <CreateInvoiceForm  
