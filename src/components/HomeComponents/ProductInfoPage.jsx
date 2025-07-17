@@ -22,20 +22,20 @@ const ProductInfoPage = () => (
               <ListGroup.Item className='bg-light-subtle'>
                 <Badge bg="info" className="me-2">1</Badge>
                 <strong>Products:</strong> Full catalog with live on-hand quantity,
-                price, and the linked supplier.
+                price, and the linked supplier and perform can perform CRUD on them.
               </ListGroup.Item>
 
               <ListGroup.Item className='bg-light-subtle'>
                 <Badge bg="info" className="me-2">2</Badge>
                 <strong>Suppliers:</strong> Contact and lead-time details attached
-                to each product.
+                to each product with Reference. Hidden for staff.
               </ListGroup.Item>
 
               <ListGroup.Item className='bg-light-subtle'>
                 <Badge bg="info" className="me-2">3</Badge>
                 <strong>Stock Movement:</strong> Every time you create an invoice,
                 the quantity sold is automatically deducted from the product’s
-                on-hand stock.
+                on-hand stock and can be updated here.
               </ListGroup.Item>
             </ListGroup>
 
