@@ -1,4 +1,4 @@
-import { Container, Carousel } from 'react-bootstrap';
+import { Carousel, Container } from 'react-bootstrap';
 import Heading from '../components/HomeComponents/Heading';
 import Introdesign from '../components/HomeComponents/Introdesign';
 import Introoverview from '../components/HomeComponents/Introoverview';
@@ -7,15 +7,16 @@ import InvoiceInfoPage from '../components/HomeComponents/InvoiceInfoPage';
 import SupplierInfoPage from '../components/HomeComponents/SupplierInfoPage';
 import CustomerInfoPage from '../components/HomeComponents/CustomerInfoPage';
 import UserInfoPage from '../components/HomeComponents/UserInfoPage';
+import Footer from '../components/HomeComponents/Footer';
 
 
 const HomePage = () => {
 
-   return <Container className="mt-5 text-center">
-        <Heading />
-        <Introdesign />
-        <Introoverview />
-
+   return <div className="mt-5 text-center">
+        <Container>
+            <Heading />
+            <Introdesign />
+            <Introoverview />
         <Carousel 
             interval={null}
             className='p-0 shadow-lg my-5'>
@@ -35,7 +36,10 @@ const HomePage = () => {
                 <UserInfoPage />
             </Carousel.Item>
         </Carousel>
-    </Container>
+        </Container>
+
+        <Footer />
+    </div>
 };
 
 export default HomePage;

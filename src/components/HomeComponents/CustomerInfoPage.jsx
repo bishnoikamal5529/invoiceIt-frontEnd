@@ -6,7 +6,7 @@ const CustomerInfoPage = () => (
     <Row className="justify-content-center">
       <Col lg={10} xl={8}>
         {/* Customer Section */}
-        <Card className="shadow-lg border-0 mb-5">
+        <Card className="shadow-lg border-0">
           <Card.Header className="bg-success text-white">
             <h3 className="mb-0">About the Customer Page</h3>
           </Card.Header>
