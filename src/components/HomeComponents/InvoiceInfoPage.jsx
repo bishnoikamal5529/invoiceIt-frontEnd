@@ -21,7 +21,7 @@ const InvoiceInfoPage = () => (
             <ListGroup variant="flush" className='text-start shadow-lg rounded-4'>
               <ListGroup.Item className='bg-primary-subtle'>
                 <Badge bg="primary" className="me-2">1</Badge>
-                <strong>Complete Invoice History: </strong>Searchable, shows status (Paid / Unpaid / Overdue), customer, items sold, and timestamps for easy auditing.
+                <strong>Complete Invoice History: </strong>Searchable, shows status, customer, items sold, and timestamps for easy auditing.
               </ListGroup.Item>
 
               <ListGroup.Item className='bg-primary-subtle'>
@@ -31,7 +31,7 @@ const InvoiceInfoPage = () => (
 
               <ListGroup.Item className='bg-primary-subtle'>
                 <Badge bg="primary" className="me-2">3</Badge>
-                <strong>Instant Status Updates: </strong>Changes are timestamped and reflected in both the invoice history and supplier/product dashboards without reloading the page.
+                <strong>Instant Status Updates: </strong>Changes are timestamped and reflected in both the invoice history and supplier/product dashboards.
               </ListGroup.Item>
             </ListGroup>
 
