@@ -16,7 +16,9 @@ const HomePage = () => {
         <Introdesign />
         <Introoverview />
 
-        <Carousel className='p-0 shadow-lg my-5'>
+        <Carousel 
+            interval={null}
+            className='p-0 shadow-lg my-5'>
             <Carousel.Item>
                 <ProductInfoPage />
             </Carousel.Item>
