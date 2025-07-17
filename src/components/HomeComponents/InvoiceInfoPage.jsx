@@ -6,11 +6,11 @@ const InvoiceInfoPage = () => (
     <Row className="justify-content-center">
       <Col lg={10} xl={8}>
         <Card className="shadow-lg border-0">
-          <Card.Header className="bg-light text-dark">
+          <Card.Header className="bg-primary text-white">
             <h3 className="mb-0">About the Invoice Page</h3>
           </Card.Header>
 
-          <Card.Body className='bg-light-subtle'>
+          <Card.Body className='bg-primary-subtle'>
             <p className="mb-4">
             This page gives you a single place to retrieve all invoices, update its status
             and keep it in sync with your products quantity. 
@@ -19,18 +19,18 @@ const InvoiceInfoPage = () => (
             <h5 className="text-primary">What you can see & do</h5>
 
             <ListGroup variant="flush" className='text-start shadow-lg rounded-4'>
-              <ListGroup.Item className='bg-light-subtle'>
-                <Badge bg="info" className="me-2">1</Badge>
+              <ListGroup.Item className='bg-primary-subtle'>
+                <Badge bg="primary" className="me-2">1</Badge>
                 <strong>Complete Invoice History: </strong> A searchable, paginated table lists every invoice ever created, showing status (Paid / Unpaid / Overdue), customer, items sold, and timestamps for easy auditing.
               </ListGroup.Item>
 
-              <ListGroup.Item className='bg-light-subtle'>
-                <Badge bg="info" className="me-2">2</Badge>
+              <ListGroup.Item className='bg-primary-subtle'>
+                <Badge bg="primary" className="me-2">2</Badge>
                 <strong>Smart Invoice Creation: </strong> When you build a new invoice the page auto-verifies current stock levels, warns if any requested quantity exceeds on-hand stock, and immediately decrements the available quantity upon final save.
               </ListGroup.Item>
 
-              <ListGroup.Item className='bg-light-subtle'>
-                <Badge bg="info" className="me-2">3</Badge>
+              <ListGroup.Item className='bg-primary-subtle'>
+                <Badge bg="primary" className="me-2">3</Badge>
                 <strong>Instant Status Updates: </strong> From the same screen you can mark any open invoice as Paid, Overdue, or revert to Unpaid; these changes are timestamped and reflected in both the invoice history and supplier/product dashboards without reloading the page.
               </ListGroup.Item>
             </ListGroup>

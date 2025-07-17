@@ -5,6 +5,7 @@ import Introoverview from '../components/HomeComponents/Introoverview';
 import ProductInfoPage from '../components/HomeComponents/ProductInfoPage';
 import InvoiceInfoPage from '../components/HomeComponents/InvoiceInfoPage';
 import SupplierInfoPage from '../components/HomeComponents/SupplierInfoPage';
+import UserAndCustomer from '../components/HomeComponents/UserAndCustomer';
 
 
 const HomePage = () => (
@@ -13,8 +14,9 @@ const HomePage = () => (
         <Introdesign />
         <Introoverview />
         <ProductInfoPage />
-        <InvoiceInfoPage />
         <SupplierInfoPage />
+        <InvoiceInfoPage />
+        <UserAndCustomer />
     </Container>
 );
 
