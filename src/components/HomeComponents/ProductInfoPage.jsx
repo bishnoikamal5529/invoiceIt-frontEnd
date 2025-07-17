@@ -2,7 +2,7 @@
 import { Container, Row, Col, Card, ListGroup, Badge } from 'react-bootstrap';
 
 const ProductInfoPage = () => (
-  <Container className="py-5">
+  <Container className="p-0">
     <Row className="justify-content-center">
       <Col lg={10} xl={8}>
         <Card className="shadow-lg border-0">
