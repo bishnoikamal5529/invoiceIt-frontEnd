@@ -19,7 +19,6 @@ const ProductPage = () => {
                 ignore = true;
                 setErrorMsg("You need to login again.");
             }
-            if(!ignore){
                 let errorString = null;
                 console.log("running product effect to reload products");
                 const getAllProducts = async () => {
@@ -54,21 +53,19 @@ const ProductPage = () => {
             else{
                 updateErrorMsg("Updating Products...");
             }
-            setTimeout(() => {
+            setTimeout(() => {                    
                     getAllProducts().then(entity => {
                         let newList = new Array;
-                        if(ignore && entity && entity.success){
+                        if(!ignore && entity && entity.success){
                             for(let i=0; i<entity.data.length; i++){
                                 newList[i] = entity.data[i];
                                 newList[i].id = i+1;
                             }
-                        
                             setProducts(newList);
                         }  
                     })
                 }, 500)
-            }
-        
+            
                 return () => {
                     ignore = true;
                 }
