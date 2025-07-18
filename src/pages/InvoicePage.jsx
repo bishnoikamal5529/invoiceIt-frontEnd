@@ -56,7 +56,7 @@ const InvoicePage = () => {
             getAllInvoices().then(entity => {
                 console.log(entity);
                 let newList = [];
-                if (ignore && entity.success) {
+                if (!ignore && entity.success) {
                     for (let i = 0; i < entity.data.length; i++) {
                         newList[i] = entity.data[i];
                         if(!entity.data[i].customerEmail){

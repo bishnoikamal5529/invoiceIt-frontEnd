@@ -60,7 +60,7 @@ const SupplierPage = () => {
                 getAllSuppliers().then(entity => {
                     console.log(entity);
                     let newList = [];
-                    if (ignore && entity) {
+                    if (!ignore && entity) {
                         for (let i = 0; i < entity.length; i++) {
                             newList[i] = entity[i];
                             newList[i].id = i + 1;

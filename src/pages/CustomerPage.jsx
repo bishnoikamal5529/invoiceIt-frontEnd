@@ -58,7 +58,7 @@ const CustomerPage = () => {
                 getAllCustomers().then(entity => {
                     console.log(entity);
                     let newList = [];
-                    if (ignore) {
+                    if (!ignore) {
                         for (let i = 0; i < entity.length; i++) {
                             newList[i] = entity[i];
                             newList[i].id = i + 1;
