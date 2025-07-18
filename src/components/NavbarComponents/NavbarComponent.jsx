@@ -4,14 +4,47 @@ import { Container, Nav, Navbar, Row, Col } from 'react-bootstrap'
 function NavbarComponent() {
 
   const [showProtectedLinks, setShowProtectedLinks] = useState(false);  
+  const [loginRequired , setLoginRequired] = useState(false);
 
   useEffect(() => {
     let ignore = false;
     let errorString = "";
+
+
       
         if (!localStorage.authToken) {
             ignore = true;
         }else{
+          const getAllProducts = async () => {
+            try {
+                const response = await fetch('https://invoice-backend-s4y6.onrender.com/api/v1/product', {
+                    method: 'GET',
+                    headers: {
+                        Authorization: `Bearer ${localStorage.authToken}`,
+                    },
+                });
+                
+                if(response.status == 429){
+                  return "Wait"
+                }
+
+                if (!response.ok) {
+                    return "Error"
+                }
+            } catch (error) {
+                console.error('Error fetching products:', error);
+                return "Error"
+            }
+        };
+
+        getAllProducts().then((res) => {
+          if(res == "Error"){
+            setLoginRequired(true);
+          }else if(res == "Wait"){
+            console.log("Too Many Req");
+          }
+        })
+
           const fetchUsers = async () => {
             try {
                 const response = await fetch('https://invoice-backend-s4y6.onrender.com/api/v1/user', {
@@ -35,6 +68,7 @@ function NavbarComponent() {
           );
          }
 
+
         return () => {
             ignore = false;
         };
@@ -53,22 +87,26 @@ function NavbarComponent() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className='mx-3'>
+            <Nav className='ps-3'>
             <Col>
-              <Row className=' link-body-emphasis'>
-                <Nav.Link href="/product">Products</Nav.Link>
-              </Row>
-              <Row className='mt-1 link-body-emphasis'>
-              <Nav.Link href="/invoice">Invoices</Nav.Link>
-              </Row>
-              <Row className='mt-1 link-body-emphasis'>
-              <Nav.Link href="/customer">Customer</Nav.Link>
-              </Row>
-              <Row className='mt-1 link-body-emphasis'>
-              <Nav.Link href="/supplier">Supplier</Nav.Link>
-              </Row>
+                {
+                  loginRequired ? "" : <Row>
+                    <Row className=' link-body-emphasis'>
+                      <Nav.Link href="/product">Product</Nav.Link>
+                    </Row>
+                    <Row className='mt-1 link-body-emphasis'>
+                    <Nav.Link href="/invoice">Invoices</Nav.Link>
+                    </Row>
+                    <Row className='mt-1 link-body-emphasis'>
+                    <Nav.Link href="/customer">Customer</Nav.Link>
+                    </Row>
+                    <Row className='mt-1 link-body-emphasis'>
+                    <Nav.Link href="/supplier">Supplier</Nav.Link>
+                    </Row>
+                    </Row>
+                }
               {
-                  showProtectedLinks && <Row className="d-flex align-items-center mt-1 link-body-emphasis">
+                  showProtectedLinks && !loginRequired && <Row className="d-flex align-items-center mt-1 link-body-emphasis">
                     <Nav.Link href="/user">Users</Nav.Link>
                   </Row>
                 }

@@ -11,16 +11,18 @@ const CustomerPage = () => {
     const [activeUpdate, setActiveUpdate] = useState(null);
 
     useEffect(() => {
-        let ignore = true;
+        let ignore = false;
 
         if (!activeUpdate) {
             let errorString = null;
             console.log("Running customer effect to reload customers");
 
             if (!localStorage.authToken) {
-                ignore = false;
+                ignore = true;
                 setErrorMsg("You need to login again.");
             }
+
+            if(!ignore){
             const getAllCustomers = async () => {
                 try {
                     const response = await fetch('https://invoice-backend-s4y6.onrender.com/api/v1/customer', {
@@ -66,9 +68,9 @@ const CustomerPage = () => {
                     }
                 });
             }, 200);
-
+        }
             return () => {
-                ignore = false;
+                ignore = true;
             };
         }
     }, [activeUpdate]);

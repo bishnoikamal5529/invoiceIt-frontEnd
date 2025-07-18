@@ -11,16 +11,18 @@ const UserPage = () => {
     const [activeUpdate, setActiveUpdate] = useState(null);
 
     useEffect(() => {
-        let ignore = true;
+        let ignore = false;
 
         if (!activeUpdate) {
             let errorString = null;
             console.log("Running user effect to reload users");
 
             if (!localStorage.authToken) {
-                ignore = false;
+                ignore = true;
                 setErrorMsg("You need to login again.");
             }
+
+            if(!ignore){
             const fetchUsers = async () => {
                 try {
                     const response = await fetch('https://invoice-backend-s4y6.onrender.com/api/v1/user', {
@@ -65,10 +67,10 @@ const UserPage = () => {
                         setUsers(newList);
                     }
                 });
-            }, 1000);
+            }, 1000); }
 
             return () => {
-                ignore = false;
+                ignore = true;
             };
         }
     }, [activeUpdate]);

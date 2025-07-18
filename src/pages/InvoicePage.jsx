@@ -9,16 +9,18 @@ const InvoicePage = () => {
     const [activeUpdate, setActiveUpdate] = useState(null);
 
     useEffect(() => {
-        let ignore = true;
+        let ignore = false;
 
         if(!activeUpdate){
         let errorString = null;
         console.log("Running invoice effect to reload invoices");
 
         if (!localStorage.authToken) {
-            ignore = false;
+            ignore = true;
             setErrorMsg("You need to login again.");
         }
+
+        if(!ignore){
         const getAllInvoices = async () => {
             try {
                 const response = await fetch('https://invoice-backend-s4y6.onrender.com/api/v1/invoice', {
@@ -72,9 +74,10 @@ const InvoicePage = () => {
             });
         }, 500);
     }
+}
 
         return () => {
-            ignore = false;
+            ignore = true;
         };
     }, [activeUpdate]);
 

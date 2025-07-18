@@ -11,18 +11,18 @@ const ProductPage = () => {
     const [activeUpdate, setActiveUpdate] = useState(null);
 
     useEffect(() => {
-        let ignore = true;
+        let ignore = false;
 
         if(!activeUpdate){
-            let errorString = null;
-            console.log("running product effect to reload products");
             
-
             if(!localStorage.authToken){
-                ignore = false;
+                ignore = true;
                 setErrorMsg("You need to login again.");
             }
-            const getAllProducts = async () => {
+            if(!ignore){
+                let errorString = null;
+                console.log("running product effect to reload products");
+                const getAllProducts = async () => {
                 try {
                     const response = await fetch('https://invoice-backend-s4y6.onrender.com/api/v1/product', {
                         method: 'GET',
@@ -33,13 +33,13 @@ const ProductPage = () => {
             
 
                     if (!response.ok) {
-                        errorString = "There is some error while retrieving Products."
+                        return "There is some error while retrieving Products."
                     }
             
                     const data = await response.json();
             
                     if(!data){
-                        errorString = "Bad Auth";
+                        return "Bad Auth";
                     }
                     return data;
                 } catch (error) {
@@ -67,9 +67,10 @@ const ProductPage = () => {
                         }  
                     })
                 }, 500)
+            }
         
                 return () => {
-                    ignore = false;
+                    ignore = true;
                 }
             }
         }, [activeUpdate]);

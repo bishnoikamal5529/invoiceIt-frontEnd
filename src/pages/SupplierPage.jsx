@@ -12,16 +12,18 @@ const SupplierPage = () => {
     const [activeUpdate, setActiveUpdate] = useState(null);
 
     useEffect(() => {
-        let ignore = true;
+        let ignore = false;
 
         if (!activeUpdate) {
             let errorString = null;
             console.log("running supplier effect to reload suppliers");
 
             if (!localStorage.authToken) {
-                ignore = false;
+                ignore = true;
                 updateErrorMsg("You need to login again.");
             }
+
+            if(!ignore){
             const getAllSuppliers = async () => {
                 try {
                     const response = await fetch('https://invoice-backend-s4y6.onrender.com/api/v1/supplier', {
@@ -69,10 +71,10 @@ const SupplierPage = () => {
                         setSuppliers(newList);
                     }
                 });
-            }, 1000);
+            }, 1000); }
 
             return () => {
-                ignore = false;
+                ignore = true;
             };
         }
     }, [activeUpdate]);
