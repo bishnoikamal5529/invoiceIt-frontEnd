@@ -12,15 +12,14 @@ const guestLogin = async () => {
         if (response.ok && data.success) {
             const authToken = data.authToken;
             localStorage.setItem('authToken', authToken);
-            console.log('Guest login successful.');
-            return "Guest login successful."
+            return "Success"
         } else {
             console.error('Guest login failed.');
-            return "Guest login failed."
+            return "Error"
         }
     } catch (error) {
         console.error('Error during guest login:', error);
-        return "Error during guest login"
+        return "Error"
 
     }   
 };

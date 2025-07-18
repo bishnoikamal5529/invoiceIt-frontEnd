@@ -8,12 +8,14 @@ import SupplierInfoPage from '../components/HomeComponents/SupplierInfoPage';
 import CustomerInfoPage from '../components/HomeComponents/CustomerInfoPage';
 import UserInfoPage from '../components/HomeComponents/UserInfoPage';
 import Footer from '../components/HomeComponents/Footer';
+import GuestLoginWarning from '../components/HomeComponents/GuestLoginWarning';
 
 
 const HomePage = () => {
 
    return <div className="mt-5 text-center">
         <Container>
+            <GuestLoginWarning />
             <Heading />
             <Introdesign />
             <Introoverview />
