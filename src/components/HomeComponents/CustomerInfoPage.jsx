@@ -11,7 +11,7 @@ const CustomerInfoPage = () => (
             <h3 className="mb-0">About the Customer Page</h3>
           </Card.Header>
 
-          <Card.Body className="bg-success-subtle">
+          <Card.Body className="bg-success-subtle pb-5">
             <p className="mb-4">
               This page gives you a single place to manage every customer,
               keep their details up-to-date, and track their purchase history.

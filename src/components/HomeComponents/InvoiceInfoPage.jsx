@@ -10,7 +10,7 @@ const InvoiceInfoPage = () => (
             <h3 className="mb-0">About the Invoice Page</h3>
           </Card.Header>
 
-          <Card.Body className='bg-primary-subtle'>
+          <Card.Body className='bg-primary-subtle pb-5'>
             <p className="mb-4">
             This page gives you a single place to retrieve all invoices, update its status
             and keep it in sync with your products quantity. 

@@ -10,7 +10,7 @@ const InvoiceInfoPage = () => (
             <h3 className="mb-0">About the Supplier Page</h3>
           </Card.Header>
 
-          <Card.Body className='bg-dark-subtle'>
+          <Card.Body className='bg-dark-subtle pb-5'>
             <p className="mb-4">
                 This page gives you a single place to manage every supplier, keep their
                 details up-to-date, and link them to your products.

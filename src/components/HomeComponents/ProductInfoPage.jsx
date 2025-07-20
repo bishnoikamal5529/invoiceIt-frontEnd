@@ -10,7 +10,7 @@ const ProductInfoPage = () => (
             <h3 className="mb-0">About the Product Page</h3>
           </Card.Header>
 
-          <Card.Body className='bg-light-subtle'>
+          <Card.Body className='bg-light-subtle pb-5'>
             <p className="mb-4">
               This page gives you a single place to manage every product you sell
               and keep its stock in sync with your suppliers and invoices.

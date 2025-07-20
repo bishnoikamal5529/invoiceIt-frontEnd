@@ -10,7 +10,7 @@ const UserInfoPage = () => (
             <h3 className="mb-0">About the User Management Page</h3>
           </Card.Header>
 
-          <Card.Body className="bg-danger-subtle">
+          <Card.Body className="bg-danger-subtle pb-5">
             <p className="mb-4">
               <i className="bi bi-shield-lock me-1" />
               <strong>Admin & Manager only.</strong> This restricted area lets
