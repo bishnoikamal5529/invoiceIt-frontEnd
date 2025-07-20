@@ -9,7 +9,7 @@ const deleteUser = async (id) => {
         });
 
         if (response.status == 200) {
-            return "User Successfully Deleted.";
+            return "Success";
         } else {
             return "Error";
         }

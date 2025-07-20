@@ -119,6 +119,7 @@ const UserPage = () => {
         const res = await deleteUser(id);
         if(res == 'Success'){
             setTimeout(handleRefresh, 1000);
+            updateErrorMsg("User Deleted.")
         }
         else{                        
             updateErrorMsg("Something went wrong while deleting the User. Please referesh the page, login again or try again later.");
