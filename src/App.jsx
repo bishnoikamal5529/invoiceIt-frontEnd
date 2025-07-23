@@ -22,9 +22,9 @@ function App() {
           <Route path="/customer" element={<CustomerPage />} />
           <Route path="/product" element={<ProductPage />} />
           <Route path="/user" element={<UserPage />} />
-          <Route path="/invoice" element={<MaintenancePage />} />
+          <Route path="/invoice" element={<InvoicePage />} />
           <Route path="/supplier" element={<SupplierPage />} />
-          <Route path='/testinvoice' element={<InvoicePage />} />
+          <Route path='/maintenance' element={<MaintenancePage />} />
         </Routes>
       </Router>
     </section>
