@@ -24,6 +24,7 @@ function App() {
           <Route path="/user" element={<UserPage />} />
           <Route path="/invoice" element={<MaintenancePage />} />
           <Route path="/supplier" element={<SupplierPage />} />
+          <Route path='/testinvoice' element={<InvoicePage />} />
         </Routes>
       </Router>
     </section>

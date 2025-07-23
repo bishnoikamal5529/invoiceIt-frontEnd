@@ -20,12 +20,11 @@ const AddProduct = ({ productList, addItem }) => {
     const handleAddToList = (product) => {
         console.log('Product added:', product);
         addItem({
-            _id : product._id,
-            name : product.name,
-            price : product.price,
+            productSku : product.sku,
+            productName : product.name,
+            productPrice : product.price,
             quantity : 1 
         });
-        // Add your logic to handle adding the product to the list
     };
 
     const renderTableRows = (products) => {

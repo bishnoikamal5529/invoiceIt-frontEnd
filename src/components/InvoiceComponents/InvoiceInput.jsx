@@ -2,19 +2,15 @@ import {useState} from 'react';
 import { Container, Col, Row } from 'react-bootstrap';
 import AddProduct from './AddProduct';
 import CreateInvoiceForm from './CreateInvoiceForm';
-import { prefetchDNS } from 'react-dom';
 
 
 const InvoiceInput = ({updateErrorMsg, setShowCreate, handleRefresh, productList }) => {
     const [itemsList, setItemList] = useState([]);
 
-    const addItem = (item) => {
-    
-        console.log(itemsList);
-            
+    const addItem = (item) => {        
         let ignore = false;
         for(let i=0; i<itemsList.length; i++){
-            if(item.name === itemsList[i].name){
+            if(item.productName === itemsList[i].productName){
                 ignore = true;
             }
         }
@@ -23,28 +19,28 @@ const InvoiceInput = ({updateErrorMsg, setShowCreate, handleRefresh, productList
         }
     }
 
-    const removeItem = (name) => {
+    const removeItem = (productName) => {
         let newList = [];
         for (let i = 0; i < itemsList.length; i++) {
-            if(itemsList[i].name !== name){
+            if(itemsList[i].productName !== productName){
                 newList.push(itemsList[i]);
             } 
         }        
         setItemList(newList);
     }
 
-    const increaseQuantity = (name) => {
+    const increaseQuantity = (productName) => {
         let ignore = false;
         let currentItem = 0;
         for(let i=0; i<itemsList.length; i++){
-            if(name === itemsList[i].name){                
+            if(productName === itemsList[i].productName){                
                 currentItem = itemsList[i];
             }
         }
         
         
         for(let i=0; i<productList.length; i++){
-            if(currentItem.name === productList[i].name){
+            if(currentItem.productName === productList[i].name){
                 if(currentItem.quantity >= productList[i].quantityInStock){
                     ignore = true;
                 }
@@ -57,7 +53,7 @@ const InvoiceInput = ({updateErrorMsg, setShowCreate, handleRefresh, productList
             let newList = [];
             for (let i = 0; i < itemsList.length; i++) {
                 newList[i] = itemsList[i]
-                if(itemsList[i].name === name){
+                if(itemsList[i].productName === productName){
                     newList[i].quantity++;
                 } 
             }
@@ -65,11 +61,11 @@ const InvoiceInput = ({updateErrorMsg, setShowCreate, handleRefresh, productList
         }
     }
 
-    const decreaseQuantity = (name) => {
+    const decreaseQuantity = (productName) => {
         let newList = [];
         for (let i = 0; i < itemsList.length; i++) {
             newList[i] = itemsList[i]
-            if(itemsList[i].name === name){
+            if(itemsList[i].productName === productName){
                 if(newList[i].quantity > 1){
                     newList[i].quantity--
                 }

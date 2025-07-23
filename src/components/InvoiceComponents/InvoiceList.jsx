@@ -14,8 +14,6 @@ const InvoiceList = ({invoices, updateErrorMsg, handleRefresh, handleUpdate}) =>
     const [showSearch, setShowSearch] = useState(false);
     const [showDelete, setShowDelete] = useState(false);
 
-    // productList is map from _ids to product name
-    const [productList, setProductList] = useState(null);
 
     //createProductList is list of products
     const [createProductList, setCreateProductList] = useState(null);
@@ -54,15 +52,9 @@ const InvoiceList = ({invoices, updateErrorMsg, handleRefresh, handleUpdate}) =>
             }
         };
 
-        let productMap = new Map();
-        // retrieving products
         getAllProducts().then(products => {
             if(ignore){
-                products = products.data;
-                for(let i=0; i<products.length; i++){
-                    productMap.set(products[i]._id, { name:products[i].name, price:products[i].price });
-                }
-                setProductList(productMap);
+                products = products.data;                
                 setCreateProductList(products);
             }
         }).catch((err) => {
@@ -154,13 +146,9 @@ const InvoiceList = ({invoices, updateErrorMsg, handleRefresh, handleUpdate}) =>
                                 <tbody>
                                     {invoice.items.map((item, index) => (
                                         <tr key={index}>
-                                            <td>{productList ? productList.get(item.product).name 
-                                                :<Spinner animation="border" variant="primary" />
-                                                    }</td>
+                                            <td>{item.productName}</td>
                                             <td>{item.quantity}</td>
-                                            <td>{productList ? productList.get(item.product).price 
-                                                :<Spinner animation="border" variant="primary" />
-                                                    }</td>
+                                            <td>{item.productPrice}</td>
                                         </tr>
                                     ))}
                                 </tbody>

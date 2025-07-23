@@ -10,12 +10,12 @@ const CreateInvoiceForm = ({updateErrorMsg, itemsList, invoiceNum, removeItem, i
     const [totalAmount, setTotalAmount] = useState(0);
 
     useEffect(() => {
-        calculateTotalAmount();
+        calculateTotalAmount();        
     }, [itemsList]);
 
     const calculateTotalAmount = () => {
         const total = itemsList.reduce((acc, item) => {
-            return acc + item.price * item.quantity;
+            return acc + item.productPrice * item.quantity;
         }, 0);
         setTotalAmount(total);
     };
@@ -33,13 +33,15 @@ const CreateInvoiceForm = ({updateErrorMsg, itemsList, invoiceNum, removeItem, i
             itemsList,
             totalAmount,
             status,
-        };
+        };        
         let newItemList = [];
         for(let i=0; i<invoiceData.itemsList.length; i++){
             newItemList[i] = {
-                product : invoiceData.itemsList[i]._id,
+                productSku : invoiceData.itemsList[i].productSku,
+                productName : invoiceData.itemsList[i].productName,
+                productPrice: invoiceData.itemsList[i].productPrice,
                 quantity : invoiceData.itemsList[i].quantity
-            }
+            }                        
         }
 
         let finalData = {
@@ -57,7 +59,7 @@ const CreateInvoiceForm = ({updateErrorMsg, itemsList, invoiceNum, removeItem, i
             updateErrorMsg("Something went wrong while creating invoice. Please try again later.");
         }
         setShowCreate(false);
-        setTimeout(handleRefresh, 1000);     
+        setTimeout(handleRefresh, 1000);    
     }   
     };
 
@@ -111,23 +113,23 @@ const CreateInvoiceForm = ({updateErrorMsg, itemsList, invoiceNum, removeItem, i
                 <tbody>
                     {itemsList.map((item, index) => (
                         <tr key={index}>
-                            <td>{item.name}</td>
-                            <td>{item.price}</td>
+                            <td>{item.productName}</td>
+                            <td>{item.productPrice}</td>
                             <td className='d-flex gap-2 align-items-center'>
                             <Button variant='primary'
                             onClick={() => {
-                                increaseQuantity(item.name)
+                                increaseQuantity(item.productName)
                             }}
                             >+</Button>
                             {item.quantity}
                             <Button variant='danger'
                             onClick={() => {
-                                decreaseQuantity(item.name)
+                                decreaseQuantity(item.productName)
                             }}
                             >-</Button>
                             <Button variant='dark'
                             onClick={() => {
-                                removeItem(item.name)
+                                removeItem(item.productName)
                             }}
                             >Remove</Button>
                             </td>
