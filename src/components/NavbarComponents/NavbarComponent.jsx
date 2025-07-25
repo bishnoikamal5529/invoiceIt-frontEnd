@@ -77,7 +77,7 @@ function NavbarComponent() {
 
   return (
     <>
-      <Navbar bg="dark" className='shadow-lg sticky-top' expand="lg" data-bs-theme="dark">
+      <Navbar bg="dark" className='shadow-lg sticky-top' expand={false} data-bs-theme="dark">
       <Container>
           <Navbar.Brand href="/">
           <span className='text-primary-emphasis'>Invoice</span>
