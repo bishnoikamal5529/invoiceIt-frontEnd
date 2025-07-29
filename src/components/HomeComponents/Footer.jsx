@@ -36,9 +36,9 @@ const Footer = () => (
         <Col md={3}>
           <h6 className="fw-bold mb-2">Legal</h6>
           <ul className="list-unstyled small">
-            <li><a href="/privacy" className="text-light text-decoration-none">Privacy Policy</a></li>
-            <li><a href="/terms" className="text-light text-decoration-none">Terms of Service</a></li>
-            <li><a href="/cookies" className="text-light text-decoration-none">Cookie Policy</a></li>
+            <li><a className="text-light text-decoration-none">Privacy Policy</a></li>
+            <li><a className="text-light text-decoration-none">Terms of Service</a></li>
+            <li><a className="text-light text-decoration-none">Cookie Policy</a></li>
           </ul>
         </Col>
       </Row>
